@@ -18,4 +18,72 @@
 <pre><code>3</code></pre><p>样例输入2</p>
 <pre><code>10 4
 140 26 69 55 39 64 2 89 78 421</code></pre><p>样例输出2</p>
-<pre><code>511</code></pre>
+<pre><code>511</code></pre><h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>   在一条直线上有 N 个啤酒摊,这些啤酒摊的位置在直线上任意摆放，题目要求是任何两个连续的啤酒摊位之间距离为K<br>   问每个啤酒摊最少移动多少可以使他们之间的距离是 K 值（尽量减少所有啤酒摊位移动的总米数）</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>   首先，先确定答案时什么样子的，设第一个点在答案中是 a,则之后是 a + k, a + 2 * k,……a + (n - 1)*k<br>   那么我们先不急着找那个a，位置可以变，距离不会变，我们可以从距离入手<br>   假设以前的点分别是 b1,b2,…..bn,对应的距离是 x1,x2…xn</p>
+<p>   则有 xi = bi - b1,然后这些 x 与 预想的答案做差找出距离来，即 dxi = xi - (i-1)*k<br>   之后我们需要找的就是dx的中位数，这样可以保证左右的移动米数最小<br>   之后就可以用那个点作为基准使其他点移动到正确的位置</p>
+<p>   优化： xi 中的 b1会发现是个常数，而且最后求距离的时候并没有产生影响，我们可以直接把 bi 当作 xi这样的话就省区了差分</p>
+<h4 id="AC码"><a href="#AC码" class="headerlink" title="AC码"></a>AC码</h4><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="meta">#<span class="meta-keyword">define</span> INT_MAX 2147483647</span>
+<span class="meta">#<span class="meta-keyword">define</span> INT_MIN (- INT_MAX - 1)</span>
+<span class="meta">#<span class="meta-keyword">define</span> PI acos(-1)</span>
+
+<span class="meta">#<span class="meta-keyword">define</span> in(x) (x) = read()</span>
+<span class="meta">#<span class="meta-keyword">define</span> fre(x) for(int _=(x); _;_--)</span>
+<span class="meta">#<span class="meta-keyword">define</span> frein() int in(Loop_var);while(Loop_var--)</span>
+
+<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">int</span> ans = <span class="number">0</span>, mark = <span class="number">1</span>;
+    <span class="keyword">int</span> t = getchar();
+    <span class="keyword">while</span> (t &lt; <span class="string">'0'</span> || t &gt; <span class="string">'9'</span>)
+    {
+        <span class="keyword">if</span> (t == <span class="string">'-'</span>)
+            mark = <span class="number">-1</span>;
+        t = getchar();
+    }
+    <span class="keyword">while</span> (t &lt;= <span class="string">'9'</span> &amp;&amp; t &gt;= <span class="string">'0'</span>)
+    {
+        ans = (ans &lt;&lt; <span class="number">3</span>) + (ans &lt;&lt; <span class="number">1</span>) + t - <span class="string">'0'</span>;
+        t = getchar();
+    }
+
+    <span class="keyword">return</span> ans * mark;
+};
+
+<span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">5</span>;
+<span class="keyword">long</span> <span class="keyword">long</span> dist[N];
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>{
+    ios::sync_with_stdio(<span class="literal">false</span>);
+    <span class="built_in">cin</span>.tie(<span class="number">0</span>);
+    <span class="built_in">cout</span>.tie(<span class="number">0</span>);
+    <span class="comment">//IO</span>
+
+    int in(n), in(k);
+    fre(n) in(dist[_]);
+    sort(dist + <span class="number">1</span>, dist + <span class="number">1</span> + n);
+
+    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)
+        dist[i] -= <span class="number">1l</span>l * k * (i - <span class="number">1</span>);
+    sort(dist + <span class="number">1</span>, dist + <span class="number">1</span> + n);
+
+    <span class="keyword">long</span> <span class="keyword">long</span> mid = dist[(n + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>];
+
+    fre(n) ans += <span class="built_in">abs</span>(dist[_] - mid);
+
+    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
