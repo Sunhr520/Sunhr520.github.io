@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Development notes of SHR</title>
+    <title>J. Beer Vision - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    
+    <meta name="description" content="We are given a (drunken) image of stars as seen by a drunken man lying on his back on thegrass in t,"> 
     <meta name="author" content="Sunhr520"> 
     <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -35,122 +35,76 @@
 <body class="loading">
     <span id="config-title" style="display:none">Development notes of SHR</span>
     <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="  menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="https://github.com/Sunhr520" title="Github" target="_blank" rel="noopener">Github</a>
-        </li>
-        
-    </ul>
-    <p id="copyright">
-        &copy; 2020 Sunhr520.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a>
-        by Fechin
-    </p>
-</div>
-
-<div id="container">
-    
-<div id="screen">
-    <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/welcome-cover.jpg" id="cover" crossorigin="anonymous" width="1920" height="1080">
-        </div>
-    </div>
-    <div id="vibrant">
-        <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
-            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
-        </svg>
-        <div></div>
-    </div>
-    <div id="header">
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">J. Beer Vision</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
         <div>
-            <a class="image-logo" href="/"></a>
-            <div class="icon-menu switchmenu"></div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
         </div>
     </div>
-    
-    <div id="post0">
-        <p>二月 16, 2020</p>
-        <h2><a href="/Trials/SecondTrials/TE/" title="TE" class="posttitle">TE</a></h2>
-        <p class="summary">描述有一个坐标系，BaoBao的家在(n, m)点，BaoBao现在在(0,0)点，坐标系上有k个奇怪的馅饼，
-坐...</p>
-    </div>
-    
+    <div class="scrollbar"></div>
 </div>
 
-    <div id="primary">
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">J. Beer Vision</h1>
+        <div class="stuff">
+            <span>二月 16, 2000</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>We are given a (drunken) image of stars as seen by a drunken man lying on his back on thegrass in the vicinity of a closed pub late in the evening. His image is a blend of one original(sober) image, and a copy of the same image shifted by some fifixed (X, Y ) nonzero vector. Onlythe resulting blended image is perceived by the drunkard. Neither the original sober image northe shift vector are available to him and to us, unfortunately. </p>
+<p>An act of humanity would be to restore his perceived image to the version seen by his soberfellow citizens. </p>
+<p>Given an image, write a program which calculates how many distinct (X, Y ) vectors exist suchthat the drunken image can be created by merging some original sober image with its copyshifted by the vector. </p>
+<p>Note that if the images of two difffferent stars — one in the original image and the other in itsshifted copy — overlap in the blended image, then the drunken image, which is also the inputof the program, contains only one entry for this position. </p>
+<p>** Input Specifification **</p>
+<p>The fifirst line of input contains an integer N (0 &lt; N ≤ 1000), the number of stars in theblended (drunken) image. Next, there are N lines, each with two space-separated integers Xi, Yi (( 1000 ≤ Xi, Yi ≤ 1000) describing the position of a star. All stars are regarded to be pointswith no dimensions. </p>
+<p>** Output Specifification **</p>
+<p>Print the number of distinct vectors with non-zero length which can be applied to an unknownsober picture to produce the input drunken image. The unknown image might be difffferent indifffferent cases. </p>
+<p>样例输入1</p>
+<blockquote>
+<p>5<br>0 0<br>1 1<br>2 2<br>2 0<br>3 1<br>样例输出1<br>2<br>样例输入2<br>3<br>0 0<br>0 1<br>1 0<br>样例输出2<br>0</p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+            </audio>
+            
+        </div>
         
-<div class="post">
-    <a href="/Trials/SecondTrials/TE/" title="TE">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2020</p>
-        <h3><a href="/Trials/SecondTrials/TE/" title="TE" class="posttitle">TE</a></h3>
-        <p>描述有一个坐标系，BaoBao的家在(n, m)点，BaoBao现在在(0,0)点，坐标系上有k个奇怪的馅饼，
-坐标分别为(x1,y1),(x2,y2)....</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/Trials/SecondTrials/TF/" title="TF">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2020</p>
-        <h3><a href="/Trials/SecondTrials/TF/" title="TF" class="posttitle">TF</a></h3>
-        <p>描述BaoBao 打 CF 的时候看到一个函数:f(x,y)=(x|y)-y,其中|表示按位或。
-BaoBao想要进一步研究一下这个函数的性质，于是有了下...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/Trials/SecondTrials/TK/" title="TK">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2020</p>
-        <h3><a href="/Trials/SecondTrials/TK/" title="TK" class="posttitle">TK</a></h3>
-        <p>描述1 和 0 是两个神奇的数字，它可以表示高电平与低电平，是与非，存在与不存在……
-计算机中的一切都是由 00 和 11 组成的，因此二进制在计算机中极...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/CTU2019/CTUOpenContest2019/F/" title="F. Beer Marathon">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2000</p>
-        <h3><a href="/CTU2019/CTUOpenContest2019/F/" title="F. Beer Marathon" class="posttitle">F. Beer Marathon</a></h3>
-        <p>In the booths version of the popular annual Beer Marathon, many beer booths (...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/CTU2019/CTUOpenContest2019/J/" title="J. Beer Vision">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2000</p>
-        <h3><a href="/CTU2019/CTUOpenContest2019/J/" title="J. Beer Vision" class="posttitle">J. Beer Vision</a></h3>
-        <p>We are given a (drunken) image of stars as seen by a drunken man lying on his...</p>
-    </div>
-</div>
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
 
 
     </div>
     
 </div>
-<div id="preview"></div>
 
+
+    </div>
+</div>
 </body>
 
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
