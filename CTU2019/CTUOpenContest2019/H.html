@@ -1,13 +1,17 @@
 <hr>
-<p>title: H: Screamers in the Storm<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<p>title: Screamers in the Storm<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
 <hr>
 <p>As you might remember from your fifirst years in school, the human race invented beer brewingat least about 7000 years ago. The total amount of beer consumed from those times must bemonumental and surely the rate of consumption is not going to shrink in the coming millennia.</p>
 <p>To celebrate these facts, we invite you to implement a game, seemingly unrelated to beer brewing.It is quite possible, however, that after a successful implementation you might feel a little dizzy,just as if you have had a little bit more than your daily dose of beer…</p>
 <p>The game is played on a rectangular M × N grid consisting of square tiles of difffferent types. </p>
-<p>** Animals and food **</p>
+<ul>
+<li>Animals and food </li>
+</ul>
 <p>There is some number of animals on the grid, each animal occupies exactly one tile.</p>
 <p>Grass grows, sheep eat grass, wolves eat sheep, and both wolves and sheep can die of starvation. </p>
-<p>** Turns and animal actions **</p>
+<ul>
+<li>Turns and animal actions</li>
+</ul>
 <p>Each turn consists of actions in the following order:</p>
 <ol>
 <li><p>All animals on the grid move. Each wolf moves to a neighbouring tile in the east (to the right). If the wolf’s move is not possible, the wolf moves to the westernmost tile in its row. Each sheep moves to a neighbouring tile in the south (down). If the sheep’s move is not possible, the sheep moves to the northernmost tile in its column. </p>
@@ -21,7 +25,9 @@
 <li><p>If a sheep didn’t eat in any of the last 5 turns including the current turn, it dies and the tile is changed to a Soil with carcass tile. </p>
 </li>
 </ol>
-<p>** Types of tiles and their changes **</p>
+<ul>
+<li>Types of tiles and their changes</li>
+</ul>
 <p>There are three types of tiles. The type of a tile may be changed in the course of the game.</p>
 <ol>
 <li><p>Soil tile: After 3 turns after the beginning of the game or after 3 turns after the tilebecame a Soil tile, the tile becomes a Soil with grass tile.</p>
@@ -31,7 +37,9 @@
 <li><p>Soil with carcass tile: Whenever an animal dies on a tile of any type, the tile immediatelybecomes a Soil with carcass tile. Animals can still move to this tile, but the grass willnever grow on this tile again. As the game progresses, more carcasses may accumulate onthe tile. </p>
 </li>
 </ol>
-<p>** Input Specifification **</p>
+<ul>
+<li>Input Specifification </li>
+</ul>
 <p>First line of the input contains three integers T, N and M (1 ≤ T ≤ 100, 1 ≤ M, N ≤ 20), whereT is the number of turns, M is the number of rows and N is the number of columns of the grid.The following M lines contain N characters each. Characters denote the types of tiles: </p>
 <p>• . (dot character) denotes a Soil tile</p>
 <p>• S denotes a Soil tile with a sheep on it </p>
@@ -45,6 +53,30 @@
 <p>• # for a Soil with grass tile </p>
 <p>• . (dot character) for a Soil tile</p>
 <p>样例输入1</p>
-<blockquote>
-<p>6 6 5<br>..S..<br>…..<br>.S…<br>…..<br>….W<br>.S…<br>样例输出1<br>##S##<br>#####<br>#####<br>#.###<br>W<em>.##<br>#S.##<br>样例输入2<br>14 3 3<br>S..<br>W..<br>…<br>样例输出2<br>.##<br>#</em>#<br>S##<br>样例输入3<br>2 3 1<br>S<br>.<br>.<br>样例输出3<br>.<br>.<br>S</p>
-</blockquote>
+<pre><code>6 6 5
+..S..
+.....
+.S...
+.....
+....W
+.S...</code></pre><p>样例输出1</p>
+<pre><code>##S##
+#####
+#####
+#.###
+W*.##
+#S.##</code></pre><p>样例输入2</p>
+<pre><code>14 3 3
+S..
+W..
+...</code></pre><p>样例输出2</p>
+<pre><code>.##
+#*#
+S##</code></pre><p>样例输入3</p>
+<pre><code>2 3 1
+S
+.
+.</code></pre><p>样例输出3</p>
+<pre><code>.
+.
+S</code></pre>

@@ -1,5 +1,5 @@
 <hr>
-<p>title: E: Beer Game<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<p>title: Beer Game<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
 <hr>
 <p>The Beer Can Rows game is played by a single player whose goal is to modify a given arrangementof given beer cans and wooden tokens in the minimum number of moves to obtain an arrangementsatisfying a specifific condition.</p>
 <p>A beer can row is a straight row of objects each of which is either a beer can or a wooden token.Difffferent tokens may have difffferent values, the value of a token is printed on the token. Thebeginning and the end of each row are clearly marked.</p>
@@ -17,12 +17,19 @@
 <p>The player is obliged to keep each beer can row arranged neatly in a straight line for the entireduration of the game to avoid any uncertainty regarding the order of objects in the row.</p>
 <p>The goal of the game is to obtain two identical beer can rows. Two rows are considered to beidentical if they contain only beer cans, the number of the cans in both rows is the same andthe brand of the k-th can in one row is the same as the brand of the k-th can in the other row,for all values of k in the range from 1 to the length of the rows.</p>
 <p>Find the minimum number of moves player needs to fifinish the Beer Can Rows game.</p>
-<p>** Input Specifification ** </p>
+<ul>
+<li>Input Specifification  </li>
+</ul>
 <p>The input consists of two lines which represent two initial beer can rows. Each line containsonly lowercase characters (a – z) and decimal digits 0 – 9. Each character represents one beercan brand, difffferent characters represent difffferent brands. Each brand available in the game isrepresented by one lowercase character, the character may or may not appear in the input lines.Each digit represents one token, the value of the digit is equal to the value printed on the token.Any input line may contain either only lowercase characters or only decimal digits. </p>
 <p>The fifirst input line is at least 1 and at most 10 000 characters long. The second input line is atleast 1 and at most 1 000 characters long. There are no more than 100 digits in either of theinput lines.</p>
-<p>** Output Specifification **</p>
+<ul>
+<li>Output Specifification </li>
+</ul>
 <p>Output a single integer specifying the minimal number of moves a player must perform to obtaintwo identical rows of cans. </p>
 <p>样例输入1</p>
-<blockquote>
-<p>beer<br>4<br>样例输出1<br>1<br>样例输入2<br>beer5ing<br>4drinking<br>样例输出2<br>2</p>
-</blockquote>
+<pre><code>beer
+4</code></pre><p>样例输出1</p>
+<pre><code>1</code></pre><p>样例输入2</p>
+<pre><code>beer5ing
+4drinking</code></pre><p>样例输出2</p>
+<pre><code>2</code></pre>

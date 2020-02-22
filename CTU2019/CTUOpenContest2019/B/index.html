@@ -5,14 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CTU Open Contest 2019 - Development notes of SHR</title>
+    <title>Beer Bill - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="CTU2019的补题区域
-补题目录–题目–通过率–AC/总提交–
-A 19.05% 588/3086B 20.40% 284/1392C 26.82% 118/440 D 10.26% 8  /78,"> 
+    <meta name="description" content="Pub bills were introduced into daily life long before computers even existed. People tend tothink t,"> 
     <meta name="author" content="Sunhr520"> 
     <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -42,7 +40,7 @@ A 19.05% 588/3086B 20.40% 284/1392C 26.82% 118/440 D 10.26% 8  /78,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">CTU Open Contest 2019</h3>
+    <h3 class="subtitle">Beer Bill</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -60,19 +58,53 @@ A 19.05% 588/3086B 20.40% 284/1392C 26.82% 118/440 D 10.26% 8  /78,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">CTU Open Contest 2019</h1>
+        <h1 class="title">Beer Bill</h1>
         <div class="stuff">
-            <span>二月 22, 2020</span>
+            <span>二月 16, 2000</span>
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/CTU2019/" rel="tag">CTU2019</a></li></ul>
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h3 id="CTU2019的补题区域"><a href="#CTU2019的补题区域" class="headerlink" title="CTU2019的补题区域"></a>CTU2019的补题区域</h3><hr>
-<h4 id="补题目录"><a href="#补题目录" class="headerlink" title="补题目录"></a>补题目录</h4><p>–题目–通过率–AC/总提交–</p>
-<p><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/A/">A 19.05% 588/3086</a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/B/">B 20.40% 284/1392</a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/C/">C 26.82% 118/440 </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/D/">D 10.26% 8  /78  </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/E/">E 36.17% 17 /47  </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/F/">F 12.30% 131/1065</a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/G/">G 28.93% 70 /242 </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/H/">H 22.27% 57 /256 </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/I/">I 36.96% 17 /46  </a><br><a href="https://sunhr520.github.io/CTU2019/CTUOpenContest2019/J/">J 36.36% 60 /165 </a></p>
-
+            <p>Pub bills were introduced into daily life long before computers even existed. People tend tothink that once a bill has been paid, it is no more than a pathetic paper scrap not worthy ofany more attention. The fact, completely overlooked by established computer science streams,is that the scribblings on the bill represent highly formalized and often quite nontrivial textsuitable for many formal language applications and analyses. </p>
+<p> A bill consists of lines of characters. Each line is either a priced line or a rake line. A pricedline begins with a positive integer — the price of a food or drink item — which is optionallyfollowed by some number of vertical bars. The price of the line is calculated as follows: If thebars are present, the price of the line is equal to the item price multiplied by the number ofbars. Otherwise, the price of the line is equal to the price of the item. A rake line containsonly vertical bars (similar to rake dents, hence the name rake line), each bar stands for one beerbought by the bill holder. The price of the rake line is the price of one beer multiplied by thenumber of the bars on the line. The beer price, in this problem, is equal to 42 monetary units.The bill total is the total of prices of all lines on the bill. </p>
+<p> We present you with a formal defifinition of the so-called Raked bill language, as far as we know,the fifirst of its kind in the whole history of computer science. The bills in this problem areexpressed in the Raked bill language. </p>
+<pre><code>&lt;BILL&gt; ::= &lt;LINE&gt; | &lt;LINE&gt;&lt;BILL&gt;
+&lt;LINE&gt; ::= &lt;PRICED_LINE&gt;&lt;line_break&gt; | &lt;RAKE_LINE&gt;&lt;line_break&gt;
+&lt;PRICED_LINE&gt; ::= &lt;PRICE_SPEC&gt; | &lt;PRICE_SPEC&gt;&lt;RAKE&gt; 
+&lt;RAKE_LINE&gt; ::= &lt;RAKE&gt; 
+&lt;PRICE_SPEC&gt; ::= &lt;PUB_INTEGER&gt;&lt;comma&gt;&lt;hyphen&gt; 
+&lt;RAKE&gt; ::= &lt;rake_dent&gt; | &lt;rake_dent&gt;&lt;RAKE&gt;
+&lt;PUB_INTEGER&gt; ::= &lt;dig_1_9&gt; | &lt;dig_1_9&gt;&lt;DIG_SEQ&gt; 
+&lt;DIG_SEQ&gt; ::= &lt;dig_0_9&gt; | &lt;dig_0_9&gt;&lt;DIG_SEQ&gt; 
+&lt;dig_1_9&gt; ::= ’1’ | ’2’ | ’3’ | ’4’ | ’5’ | ’6’ | ’7’ | ’8’ | ’9’ 
+&lt;dig_0_9&gt; ::= ’0’ | &lt;dig_1_9&gt; 
+&lt;rake_dent&gt; ::= ’|’ // ascii character 124 
+&lt;comma&gt; ::= ’,’ // ascii character 44 
+&lt;hyphen&gt; ::= ’-’ // ascii character 45 
+&lt;line_break&gt; ::= LF // ascii character 10, line feed </code></pre><p> In the language specifification above, the actual characters which appear on the bill are enclosedin single quotation marks to distinguish them from the other parts of the specifification. Thesymbol // introduces a single line comment, it is not part of the language defifinition.</p>
+<ul>
+<li><p>Input Specifification  </p>
+<p>The input contains a nonempty sequence of lines which specify a bill. Each input line is eithera priced line or a rake line. A priced line starts with a positive integer, not exceeding 1 000,followed immediately by a comma and a minus sign. Optionally, the minus sign is followed bya nonzero number of vertical bars. A rake line contains nonzero number of vertical bars andno other symbols. In the whole bill, the vertical bar is represented as ’|’, ascii character 124.Each line contains at most 1 000 characters, there are no blanks on the line. There are at most1 000 input lines. The input does not contain any empty line. All prices are expressed in thesame monetary units. </p>
+</li>
+<li><p>Output Specifification </p>
+<p>Output a single number — the bill total rounded up to the nearest 10s. The number shouldbe in the <PUB integer> format, that is, it should be immediately followed by a comma and aminus sign. </PUB></p>
+</li>
+</ul>
+<p>样例输入1</p>
+<pre><code>||||
+123,-|||</code></pre><p>样例输出1</p>
+<pre><code>540,-</code></pre><p>样例输入2</p>
+<pre><code>|||
+12,-|
+|||
+12,-||
+10,-|</code></pre><p>样例输出2</p>
+<pre><code>300,-</code></pre><p>样例输入3</p>
+<pre><code>|
+8,-|</code></pre><p>样例输出3</p>
+<pre><code>50,-</code></pre>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="http://domain.com/awesome.mp3">

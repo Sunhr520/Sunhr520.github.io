@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>J. Beer Vision - Development notes of SHR</title>
+    <title>Beer Vision - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -40,7 +40,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">J. Beer Vision</h3>
+    <h3 class="subtitle">Beer Vision</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -58,7 +58,7 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">J. Beer Vision</h1>
+        <h1 class="title">Beer Vision</h1>
         <div class="stuff">
             <span>二月 16, 2000</span>
             
@@ -71,15 +71,27 @@
 <p>An act of humanity would be to restore his perceived image to the version seen by his soberfellow citizens. </p>
 <p>Given an image, write a program which calculates how many distinct (X, Y ) vectors exist suchthat the drunken image can be created by merging some original sober image with its copyshifted by the vector. </p>
 <p>Note that if the images of two difffferent stars — one in the original image and the other in itsshifted copy — overlap in the blended image, then the drunken image, which is also the inputof the program, contains only one entry for this position. </p>
-<p>** Input Specifification **</p>
+<ul>
+<li>Input Specifification </li>
+</ul>
 <p>The fifirst line of input contains an integer N (0 &lt; N ≤ 1000), the number of stars in theblended (drunken) image. Next, there are N lines, each with two space-separated integers Xi, Yi (( 1000 ≤ Xi, Yi ≤ 1000) describing the position of a star. All stars are regarded to be pointswith no dimensions. </p>
-<p>** Output Specifification **</p>
+<ul>
+<li>Output Specifification </li>
+</ul>
 <p>Print the number of distinct vectors with non-zero length which can be applied to an unknownsober picture to produce the input drunken image. The unknown image might be difffferent indifffferent cases. </p>
 <p>样例输入1</p>
-<blockquote>
-<p>5<br>0 0<br>1 1<br>2 2<br>2 0<br>3 1<br>样例输出1<br>2<br>样例输入2<br>3<br>0 0<br>0 1<br>1 0<br>样例输出2<br>0</p>
-</blockquote>
-
+<pre><code>5
+0 0
+1 1
+2 2
+2 0
+3 1</code></pre><p>样例输出1</p>
+<pre><code>2</code></pre><p>样例输入2</p>
+<pre><code>3
+0 0
+0 1
+1 0</code></pre><p>样例输出2</p>
+<pre><code>0</code></pre>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="http://domain.com/awesome.mp3">

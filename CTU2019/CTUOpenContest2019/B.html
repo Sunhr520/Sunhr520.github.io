@@ -1,29 +1,41 @@
 <hr>
-<p>title: B: Beer Bill<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<p>title: Beer Bill<br>date: 2000-2-16 15:16:17<br>categories:<br>    - CTU2019<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
 <hr>
 <p>Pub bills were introduced into daily life long before computers even existed. People tend tothink that once a bill has been paid, it is no more than a pathetic paper scrap not worthy ofany more attention. The fact, completely overlooked by established computer science streams,is that the scribblings on the bill represent highly formalized and often quite nontrivial textsuitable for many formal language applications and analyses. </p>
 <p> A bill consists of lines of characters. Each line is either a priced line or a rake line. A pricedline begins with a positive integer — the price of a food or drink item — which is optionallyfollowed by some number of vertical bars. The price of the line is calculated as follows: If thebars are present, the price of the line is equal to the item price multiplied by the number ofbars. Otherwise, the price of the line is equal to the price of the item. A rake line containsonly vertical bars (similar to rake dents, hence the name rake line), each bar stands for one beerbought by the bill holder. The price of the rake line is the price of one beer multiplied by thenumber of the bars on the line. The beer price, in this problem, is equal to 42 monetary units.The bill total is the total of prices of all lines on the bill. </p>
 <p> We present you with a formal defifinition of the so-called Raked bill language, as far as we know,the fifirst of its kind in the whole history of computer science. The bills in this problem areexpressed in the Raked bill language. </p>
-<p> <BILL> ::= <LINE> | <LINE><BILL></p>
-<p> <LINE> ::= <PRICED_LINE><line_break> | <RAKE_LINE><line_break></p>
-<p> <PRICED_LINE> ::= <PRICE_SPEC> | <PRICE_SPEC><RAKE> </p>
-<p> <RAKE_LINE> ::= <RAKE> </p>
-<p><PRICE_SPEC> ::= <PUB_INTEGER><comma><hyphen> </p>
-<p> <RAKE> ::= <rake_dent> | <rake_dent><RAKE></p>
-<p> <PUB_INTEGER> ::= <dig_1_9> | <dig_1_9><DIG_SEQ> </p>
-<p> <DIG_SEQ> ::= <dig_0_9> | <dig_0_9><DIG_SEQ> </p>
-<p> <dig_1_9> ::= ’1’ | ’2’ | ’3’ | ’4’ | ’5’ | ’6’ | ’7’ | ’8’ | ’9’ </p>
-<p><dig_0_9> ::= ’0’ | <dig_1_9> </p>
-<p> <rake_dent> ::= ’|’ // ascii character 124 </p>
-<p><comma> ::= ’,’ // ascii character 44 </p>
-<p> <hyphen> ::= ’-’ // ascii character 45 </p>
-<p> <line_break> ::= LF // ascii character 10, line feed </p>
-<p> In the language specifification above, the actual characters which appear on the bill are enclosedin single quotation marks to distinguish them from the other parts of the specifification. Thesymbol // introduces a single line comment, it is not part of the language defifinition.</p>
-<p>** Input Specifification ** </p>
-<p> The input contains a nonempty sequence of lines which specify a bill. Each input line is eithera priced line or a rake line. A priced line starts with a positive integer, not exceeding 1 000,followed immediately by a comma and a minus sign. Optionally, the minus sign is followed bya nonzero number of vertical bars. A rake line contains nonzero number of vertical bars andno other symbols. In the whole bill, the vertical bar is represented as ’|’, ascii character 124.Each line contains at most 1 000 characters, there are no blanks on the line. There are at most1 000 input lines. The input does not contain any empty line. All prices are expressed in thesame monetary units. </p>
-<p>** Output Specifification **</p>
-<p> Output a single number — the bill total rounded up to the nearest 10s. The number shouldbe in the <PUB INTEGER> format, that is, it should be immediately followed by a comma and aminus sign. </p>
+<pre><code>&lt;BILL&gt; ::= &lt;LINE&gt; | &lt;LINE&gt;&lt;BILL&gt;
+&lt;LINE&gt; ::= &lt;PRICED_LINE&gt;&lt;line_break&gt; | &lt;RAKE_LINE&gt;&lt;line_break&gt;
+&lt;PRICED_LINE&gt; ::= &lt;PRICE_SPEC&gt; | &lt;PRICE_SPEC&gt;&lt;RAKE&gt; 
+&lt;RAKE_LINE&gt; ::= &lt;RAKE&gt; 
+&lt;PRICE_SPEC&gt; ::= &lt;PUB_INTEGER&gt;&lt;comma&gt;&lt;hyphen&gt; 
+&lt;RAKE&gt; ::= &lt;rake_dent&gt; | &lt;rake_dent&gt;&lt;RAKE&gt;
+&lt;PUB_INTEGER&gt; ::= &lt;dig_1_9&gt; | &lt;dig_1_9&gt;&lt;DIG_SEQ&gt; 
+&lt;DIG_SEQ&gt; ::= &lt;dig_0_9&gt; | &lt;dig_0_9&gt;&lt;DIG_SEQ&gt; 
+&lt;dig_1_9&gt; ::= ’1’ | ’2’ | ’3’ | ’4’ | ’5’ | ’6’ | ’7’ | ’8’ | ’9’ 
+&lt;dig_0_9&gt; ::= ’0’ | &lt;dig_1_9&gt; 
+&lt;rake_dent&gt; ::= ’|’ // ascii character 124 
+&lt;comma&gt; ::= ’,’ // ascii character 44 
+&lt;hyphen&gt; ::= ’-’ // ascii character 45 
+&lt;line_break&gt; ::= LF // ascii character 10, line feed </code></pre><p> In the language specifification above, the actual characters which appear on the bill are enclosedin single quotation marks to distinguish them from the other parts of the specifification. Thesymbol // introduces a single line comment, it is not part of the language defifinition.</p>
+<ul>
+<li><p>Input Specifification  </p>
+<p>The input contains a nonempty sequence of lines which specify a bill. Each input line is eithera priced line or a rake line. A priced line starts with a positive integer, not exceeding 1 000,followed immediately by a comma and a minus sign. Optionally, the minus sign is followed bya nonzero number of vertical bars. A rake line contains nonzero number of vertical bars andno other symbols. In the whole bill, the vertical bar is represented as ’|’, ascii character 124.Each line contains at most 1 000 characters, there are no blanks on the line. There are at most1 000 input lines. The input does not contain any empty line. All prices are expressed in thesame monetary units. </p>
+</li>
+<li><p>Output Specifification </p>
+<p>Output a single number — the bill total rounded up to the nearest 10s. The number shouldbe in the <PUB INTEGER> format, that is, it should be immediately followed by a comma and aminus sign. </p>
+</li>
+</ul>
 <p>样例输入1</p>
-<blockquote>
-<p>||||<br>123,-|||<br>样例输出1<br>540,-<br>样例输入2<br>|||<br>12,-|<br>|||<br>12,-||<br>10,-|<br>样例输出2<br>300,-<br>样例输入3<br>|<br>8,-|<br>样例输出3<br>50,-</p>
-</blockquote>
+<pre><code>||||
+123,-|||</code></pre><p>样例输出1</p>
+<pre><code>540,-</code></pre><p>样例输入2</p>
+<pre><code>|||
+12,-|
+|||
+12,-||
+10,-|</code></pre><p>样例输出2</p>
+<pre><code>300,-</code></pre><p>样例输入3</p>
+<pre><code>|
+8,-|</code></pre><p>样例输出3</p>
+<pre><code>50,-</code></pre>
