@@ -1,0 +1,93 @@
+<hr>
+<p>title: Brownies vs. Candies vs. Cookies<br>date: 2000-2-16 15:16:17<br>categories:<br>    - UCF2015<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<hr>
+<p>Everyone is welcome to the UCF Programming Team practices, and many students take advantage of this opportunity.  The main benefit is that these students improve their problem solving and programming skills.  Another benefit is that the students enjoy the refreshments Dr.Orooji brings every week!  Dr.O usually brings candies but sometimes he brings cookies or brownies.  Brownies are very popular and don’t usually last long, so Dr.O has to come up with some clever trick to make the brownies last longer (so that the students stay for the entire practice!).  Well, the easiest solution is to cut the brownies in half; that will double the number of brownies.   </p>
+<p>The Problem:   </p>
+<p>Given the original number of brownies and the students wanting brownies, you are to keep track of the brownie count as Dr.O cuts them in half.   </p>
+<p>The Input:   </p>
+<p>The first input line contains a positive integer, n, indicating the number of programming team practices.  This is followed by the data for these practices.  The first input line for each practice contains two integers (separated by a space): the number of students (between 1 and 30 inclusive) in the practice and the number of brownies (between 60 and 600 inclusive) Dr.O has brought that day.  The next input line for the practice contains a positive integer, m, indicating how many groups of students approach the refreshment table to take brownies.  This is followed by the number of students in each group, one number per line.  Assume that the input values are valid, e.g., the number of students in a group will be at least 1 and it will not be greater than the number of students in the practice.   </p>
+<p>If a group of students is approaching the refreshment table and Dr.O notices that the number of remaining brownies is less than or equal to the number of students in the group, Dr.O cuts the brownies in half to be sure they won’t be all gone after each student in the group grabs one brownie.  Note that, if needed, Dr.O will cut the brownies more than once (as many times as needed).  For example, if there are 3 brownies left and 24 students are approaching the table, Dr.O has to cut the brownies four times (3 → 6 → 12 → 24 → 48) to be sure the brownies won’t be all gone after each student in the group grabs one.   </p>
+<p>The Output:  </p>
+<p>At the beginning of each practice, output “Practice #p: s b” where p is the practice number (starting with 1), s is the number of students in this practice, and b is the number of brownies.  Then, on each of the following output lines, print the number of students in a group approaching the refreshment table and the number of brownies left after each of these students has grabbed one brownie (note that cutting in halves may occur before grabbing).  Leave a blank line after the output for each practice.</p>
+<blockquote>
+<p>样例输入<br>2<br>20 60<br>8<br>15<br>10<br>20<br>18<br>9<br>12<br>2<br>10<br>15 100<br>4<br>1<br>2<br>3<br>5 </p>
+</blockquote>
+<blockquote>
+<p>样例输出<br>Practice #1: 20 60<br>15 45<br>10 35<br>20 15<br>18 12<br>9 3<br>12 12<br>2 10<br>10 10<br>Practice #2: 15 100<br>1 99<br>2 97<br>3 94<br>5 89 </p>
+</blockquote>
+<h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>给你 k 块蛋糕，每个一段时间右 x 个人过来拿，如果不够的话将k倍增，已保证手中一直有蛋糕</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>按照题目，直接模拟。。不够就倍增到够了为止</p>
+<h4 id="AC码"><a href="#AC码" class="headerlink" title="AC码"></a>AC码</h4><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="meta">#<span class="meta-keyword">define</span> INT_MAX 2147483647</span>
+<span class="meta">#<span class="meta-keyword">define</span> INT_MIN (- INT_MAX - 1)</span>
+<span class="meta">#<span class="meta-keyword">define</span> PI acos(-1)</span>
+
+<span class="meta">#<span class="meta-keyword">define</span> in(x) (x) = read()</span>
+<span class="meta">#<span class="meta-keyword">define</span> fre(x) for(int _=(x); _;_--)</span>
+<span class="meta">#<span class="meta-keyword">define</span> frein() int in(Loop_var);while(Loop_var--)</span>
+
+<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">int</span> ans = <span class="number">0</span>, mark = <span class="number">1</span>;
+    <span class="keyword">int</span> t = getchar();
+    <span class="keyword">while</span>(t &lt; <span class="string">'0'</span> || t &gt; <span class="string">'9'</span>)
+    {
+        <span class="keyword">if</span> (t == <span class="string">'-'</span>)
+            mark = <span class="number">-1</span>;
+        t = getchar();
+    }
+    <span class="keyword">while</span>(t &lt;= <span class="string">'9'</span> &amp;&amp; t &gt;= <span class="string">'0'</span>)
+    {
+        ans = (ans &lt;&lt; <span class="number">3</span>) + (ans &lt;&lt; <span class="number">1</span>) + t - <span class="string">'0'</span>;
+        t = getchar();
+    }
+
+    <span class="keyword">return</span> ans * mark;    
+}
+
+
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>{
+    ios::sync_with_stdio(<span class="literal">false</span>);
+    <span class="built_in">cin</span>.tie(<span class="number">0</span>);
+    <span class="built_in">cout</span>.tie(<span class="number">0</span>);
+    <span class="comment">//IO</span>
+
+    <span class="keyword">for</span>(<span class="keyword">int</span> tp = <span class="number">1</span>, in(i); i; i--)
+    {
+        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Practice #"</span> &lt;&lt; tp++ &lt;&lt; <span class="string">": "</span>;
+
+        <span class="keyword">int</span> t = <span class="number">0</span>;
+        <span class="built_in">cout</span> &lt;&lt; (in(t)) &lt;&lt; <span class="string">" "</span>;
+        <span class="built_in">cout</span> &lt;&lt; (in(t)) &lt;&lt; <span class="built_in">endl</span>;
+
+        frein()
+        {
+            <span class="keyword">int</span> k;
+            <span class="built_in">cout</span> &lt;&lt; (in(k)) &lt;&lt; <span class="string">" "</span>;
+
+            <span class="keyword">while</span>(t &lt;= k)
+                t &lt;&lt;= <span class="number">1</span>;
+
+            t -= k;
+
+            <span class="built_in">cout</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;
+        }
+
+        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;
+    }
+
+
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>

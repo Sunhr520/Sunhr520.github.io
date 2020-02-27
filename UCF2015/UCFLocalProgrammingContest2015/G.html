@@ -1,0 +1,92 @@
+<hr>
+<p>title: Towers of Hanoi Grid<br>date: 2000-2-16 15:16:17<br>categories:<br>    - UCF2015<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<hr>
+<p>Towers of Hanoi is a rather famous problem for computer scientists as it is an excellent exercise in recursion. For those of you unfamiliar, here is the classic problem. You are given three pegs. On the first peg, there are d disks placed in decreasing order of size (as placed on the peg). The objective of the game is to move the entire tower from the first peg to the last peg. In each move, you are only allowed to move a single disk from the top of one stack to another stack. For the entire game, no disk of larger size is ever allowed to be placed on top of a disk of smaller size. The goal of the puzzle is to move the tower in the minimum number of moves.</p>
+<p>In our problem, we will instead have an n \times nn×n grid of pegs. The rows are numbered top to bottom from 1 to n, while the columns are similarly labeled, from left to right, 1 to n. The original tower is placed on the top left peg(1,1)peg(1,1). The goal is to move the tower to the bottom right peg(n,n)peg(n,n) in the minimum number of moves possible.</p>
+<p>Our game will have some different but related rules:</p>
+<p>For a peg(r,c)peg(r,c) at row r and column c, you may only move the top-most disk from peg (r,c)(r,c) to peg(r+1,c)peg(r+1,c) or peg(r,c+1)peg(r,c+1), in a single move and only if such a pair of pegs exists.<br>Only pegs (1,1)(1,1) and/or (n,n)(n,n) may have more than one disk at any time; all other pegs may contain at most one disk.<br>You can choose any peg for each move.<br>You still may never place a larger disk on a smaller disk.<br>The Problem:</p>
+<p>Given the number of disks on the starting peg and the number ndescribed above, determine the minimum number of moves to solve our Tower of Hanoi Grid puzzle.</p>
+<p>The Input:</p>
+<p>he first input line contains a positive integer, g, indicating the number of grids to solve. The grids are on the following ginput lines, one grid per line. Each grid is described by two integers d and n(2≤d≤100,2≤n≤100), representing the number of disks and the dimensions of the grid, respectively.</p>
+<blockquote>
+<p>样例输入<br>3<br>2 2<br>100 8<br>3 100</p>
+</blockquote>
+<blockquote>
+<p>样例输出<br>Grid #1: 4<br>Grid #2: impossible<br>Grid #3: 594</p>
+</blockquote>
+<h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>有一堆汉诺塔，在左上角，在一个n * n 的正方形矩阵中， 每次可以向右或向下， 除了左上和右下外不能重叠<br>最后要在右下从大到小再叠在一起，如果可以做到， 输出最小步数， 反之， 输出impossible</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>首先，先分析一下边界，由于每一个都需要向下或向右，所以说不存在“让路”这种情况， 也就是说最大的时候一定是剩下一条路让最后一个走<br>此时易得， max_d = n * n - 2 * n + 2;<br>对于每一个， 如果成功的话必定是向右 n - 1， 向下 n - 1, 一共 (n - 1) * 2步<br>所以说整体上的步数是 d * (n - 1) * 2</p>
+<p>之后还有一个特判， 也就是说 n = 1 的时候， 按照公式出现了 max_d = 1,但实际上无论多少都是开始时就完成了，所以需要特判一下</p>
+<h4 id="AC码"><a href="#AC码" class="headerlink" title="AC码"></a>AC码</h4><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="meta">#<span class="meta-keyword">define</span> INT_MAX 2147483647</span>
+<span class="meta">#<span class="meta-keyword">define</span> INT_MIN (- INT_MAX - 1)</span>
+<span class="meta">#<span class="meta-keyword">define</span> PI acos(-1)</span>
+
+<span class="meta">#<span class="meta-keyword">define</span> in(x) (x) = read()</span>
+<span class="meta">#<span class="meta-keyword">define</span> fre(x) for(int _=(x); _;_--)</span>
+<span class="meta">#<span class="meta-keyword">define</span> frein() int in(Loop_var);while(Loop_var--)</span>
+
+<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">int</span> ans = <span class="number">0</span>, mark = <span class="number">1</span>;
+    <span class="keyword">int</span> t = getchar();
+    <span class="keyword">while</span>(t &lt; <span class="string">'0'</span> || t &gt; <span class="string">'9'</span>)
+    {
+        <span class="keyword">if</span> (t == <span class="string">'-'</span>)
+            mark = <span class="number">-1</span>;
+        t = getchar();
+    }
+    <span class="keyword">while</span>(t &lt;= <span class="string">'9'</span> &amp;&amp; t &gt;= <span class="string">'0'</span>)
+    {
+        ans = (ans &lt;&lt; <span class="number">3</span>) + (ans &lt;&lt; <span class="number">1</span>) + t - <span class="string">'0'</span>;
+        t = getchar();
+    }
+
+    <span class="keyword">return</span> ans * mark;    
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> d)</span></span>
+<span class="function"></span>{
+    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;
+
+    <span class="keyword">int</span> max_d = (n - <span class="number">1</span>)* (n - <span class="number">1</span>) + <span class="number">1</span>;
+
+    <span class="keyword">if</span>(d &gt; max_d) <span class="keyword">return</span> <span class="number">-1</span>;
+
+    <span class="keyword">return</span> d * (n - <span class="number">1</span>) * <span class="number">2</span>;
+
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>{
+    ios::sync_with_stdio(<span class="literal">false</span>);
+    <span class="built_in">cin</span>.tie(<span class="number">0</span>);
+    <span class="built_in">cout</span>.tie(<span class="number">0</span>);
+    <span class="comment">//IO</span>
+
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, in(j); i &lt;= j; i++)
+    {
+        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Grid #"</span> &lt;&lt; i &lt;&lt;<span class="string">": "</span>;
+
+        int in(d), in(n);
+
+        <span class="keyword">int</span> ans = f(n, d);
+
+        <span class="keyword">if</span>(!~ans) <span class="built_in">cout</span> &lt;&lt; <span class="string">"impossible"</span> &lt;&lt; <span class="built_in">endl</span>;
+        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;
+
+        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;
+
+    }
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>

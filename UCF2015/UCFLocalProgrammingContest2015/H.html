@@ -1,0 +1,175 @@
+<hr>
+<p>title: Reach for the Stars<br>date: 2000-2-16 15:16:17<br>categories:<br>    - UCF2015<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
+<hr>
+<p>When you were a little kid, you would stamp papers randomly but your parents were still so impressed by your art. Now you are dealing with the UCF Programming Team Coaches and you need to be more creative to impress them. Good luck!</p>
+<p>You are given a star shaped stamp like the one below. The black area is covered in ink and the white area is not. When the stamp hits the paper, it leaves a mark for each cell of ink that hits the paper.</p>
+<p>For example, the image below can be made with two stampings. Notice the stamp must always remain axis-aligned when hitting the paper. We also require that the stamp be completely contained within the paper. Note a cell of paper stamped once with black ink is indistinguishable from a cell of paper stamped multiple times with black ink. Note also that cells and stamp line up properly, i.e., a cell is either covered completely by the stamp or not covered at all, i.e., the stamp will not cover part of a cell.</p>
+<p>The Problem:</p>
+<p>Given a black and white image, determine the minimum number of times, if possible, you would need to stamp the paper with the star stamp to end up with the design specified.</p>
+<p>The Input:</p>
+<p>The first input line contains a positive integer, n, indicating the number of images to evaluate. Each image starts with a line containing two integers, r and c , (1≤r≤9,1≤c≤9), representing the number of rows and columns, respectively. The next r input lines contains c characters each. The characters are either ‘.’, representing a blank cell of the image and ‘#’, representing a cell of the image covered in ink.</p>
+<p>The Output: </p>
+<p>For each image, output “Image #d: v” where v is the minimum number of stampings required to make the image.  Replace v with “impossible” (without quotes) if it is not possible to form the image using the star shaped stamp.  Leave a blank line after the output for each test case.</p>
+<pre><code>样例输入
+5
+1 1
+.
+1 1
+#
+3 3
+.#.
+###
+.#.
+3 5
+.#.#.
+#####
+.#.#.
+4 7
+.##.#..
+######.
+.######
+..#..#.
+
+样例输出
+Image #1: 0
+
+Image #2: impossible
+
+Image #3: 1
+
+Image #4: 2
+
+Image #5: 5</code></pre><h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>输入一个n * m 的矩阵，然后用 十字形覆盖，求最小覆盖次数</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>分析题目 我们发现 矩阵最大才 9 * 9 ，这不是看不起我爆搜吗？！<br>管他什么更优的算法，我爆搜就用在这个题了！</p>
+<h4 id="AC码"><a href="#AC码" class="headerlink" title="AC码"></a>AC码</h4><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="meta">#<span class="meta-keyword">define</span> INT_MAX 2147483647</span>
+<span class="meta">#<span class="meta-keyword">define</span> INT_MIN (- INT_MAX - 1)</span>
+<span class="meta">#<span class="meta-keyword">define</span> PI acos(-1)</span>
+
+<span class="meta">#<span class="meta-keyword">define</span> in(x) (x) = read()</span>
+<span class="meta">#<span class="meta-keyword">define</span> fre(x) for(int _=(x); _;_--)</span>
+<span class="meta">#<span class="meta-keyword">define</span> frein() int in(Loop_var);while(Loop_var--)</span>
+
+<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">int</span> ans = <span class="number">0</span>, mark = <span class="number">1</span>;
+    <span class="keyword">int</span> t = getchar();
+    <span class="keyword">while</span>(t &lt; <span class="string">'0'</span> || t &gt; <span class="string">'9'</span>)
+    {
+        <span class="keyword">if</span> (t == <span class="string">'-'</span>)
+            mark = <span class="number">-1</span>;
+        t = getchar();
+    }
+    <span class="keyword">while</span>(t &lt;= <span class="string">'9'</span> &amp;&amp; t &gt;= <span class="string">'0'</span>)
+    {
+        ans = (ans &lt;&lt; <span class="number">3</span>) + (ans &lt;&lt; <span class="number">1</span>) + t - <span class="string">'0'</span>;
+        t = getchar();
+    }
+
+    <span class="keyword">return</span> ans * mark;    
+}
+
+<span class="keyword">char</span> Map[<span class="number">10</span>][<span class="number">10</span>];
+<span class="keyword">int</span> T,N,M,ans,ca=<span class="number">0</span>;
+
+<span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> st,<span class="keyword">int</span> Cnt)</span></span>
+<span class="function"></span>{
+
+    <span class="keyword">if</span>(st &gt;= ans) <span class="keyword">return</span>;
+    <span class="keyword">if</span>(Cnt == <span class="number">0</span>){ans = min(ans, st); <span class="keyword">return</span>;}
+    <span class="keyword">if</span>(i == <span class="number">1</span> || i &gt;= N || j == <span class="number">1</span> || j &gt;= M) <span class="keyword">return</span>;
+
+    <span class="keyword">if</span>((Cnt<span class="number">-1</span>)/<span class="number">5</span> + <span class="number">1</span> + st &gt;= ans) <span class="keyword">return</span>;
+
+    <span class="keyword">char</span> temp[<span class="number">5</span>];
+    <span class="keyword">int</span> cnt = <span class="number">0</span>;
+    <span class="keyword">bool</span> flag = <span class="literal">false</span>;
+
+    temp[<span class="number">0</span>] = Map[i][j];
+    temp[<span class="number">1</span>] = Map[i<span class="number">-1</span>][j];
+    temp[<span class="number">2</span>] = Map[i+<span class="number">1</span>][j];
+    temp[<span class="number">3</span>] = Map[i][j<span class="number">-1</span>];
+    temp[<span class="number">4</span>] = Map[i][j+<span class="number">1</span>];
+    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++)
+    {
+        <span class="keyword">if</span>(temp[k] == <span class="string">'#'</span>) cnt++;
+        <span class="keyword">if</span>(temp[k] == <span class="string">'.'</span>)
+        {
+            flag = <span class="literal">true</span>;
+            <span class="keyword">break</span>;
+        }
+    }
+
+    <span class="keyword">if</span>(!flag &amp;&amp; cnt)
+    {
+        Map[i][j] = Map[i - <span class="number">1</span>][j] = Map[i + <span class="number">1</span>][j] = Map[i][j - <span class="number">1</span>] = Map[i][j + <span class="number">1</span>] = <span class="string">'@'</span>;
+        <span class="keyword">if</span>(j + <span class="number">1</span> &lt; M) 
+            DFS(i, j + <span class="number">1</span>, st + <span class="number">1</span>, Cnt - cnt);
+        <span class="keyword">else</span> 
+            DFS(i + <span class="number">1</span>, <span class="number">2</span>, st + <span class="number">1</span>, Cnt - cnt);
+        Map[i][j] = temp[<span class="number">0</span>];
+        Map[i<span class="number">-1</span>][j] = temp[<span class="number">1</span>];
+        Map[i+<span class="number">1</span>][j] = temp[<span class="number">2</span>];
+        Map[i][j<span class="number">-1</span>] = temp[<span class="number">3</span>];
+        Map[i][j+<span class="number">1</span>] = temp[<span class="number">4</span>];
+    }
+
+    <span class="keyword">if</span>(i==<span class="number">2</span> &amp;&amp; Map[<span class="number">1</span>][j]==<span class="string">'#'</span>) <span class="keyword">return</span>;
+    <span class="keyword">if</span>(j==<span class="number">2</span> &amp;&amp; Map[i][<span class="number">1</span>]==<span class="string">'#'</span>) <span class="keyword">return</span>;
+    <span class="keyword">if</span>(i==N<span class="number">-1</span> &amp;&amp; Map[N][j]==<span class="string">'#'</span>) <span class="keyword">return</span>;
+    <span class="keyword">if</span>(j==M<span class="number">-1</span> &amp;&amp; Map[i][M]==<span class="string">'#'</span>) <span class="keyword">return</span>;
+
+    <span class="keyword">if</span>(j+<span class="number">1</span>&lt;M) 
+        DFS(i, j + <span class="number">1</span>, st, Cnt);
+    <span class="keyword">else</span> 
+        DFS(i + <span class="number">1</span>, <span class="number">2</span>, st, Cnt);
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{
+    ios::sync_with_stdio(<span class="literal">false</span>);
+    <span class="built_in">cin</span>.tie(<span class="number">0</span>);
+    <span class="built_in">cout</span>.tie(<span class="number">0</span>);
+    <span class="comment">//IO</span>
+
+    <span class="built_in">cin</span>&gt;&gt;T;
+    <span class="keyword">for</span>(<span class="keyword">int</span> _ = <span class="number">1</span>; _ &lt;= T; _++)
+    {
+        <span class="built_in">cout</span>&lt;&lt; <span class="string">"Image #"</span> &lt;&lt; _ &lt;&lt; <span class="string">": "</span>;
+        <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M;
+
+        ans=INT_MAX;
+
+        <span class="keyword">int</span> Cnt = <span class="number">0</span>;
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)
+        {
+            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)
+            {
+                <span class="built_in">cin</span> &gt;&gt; Map[i][j];
+                <span class="keyword">if</span>(Map[i][j]==<span class="string">'#'</span>) Cnt++;
+            }
+        }
+        <span class="keyword">if</span>(Map[<span class="number">1</span>][<span class="number">1</span>] == <span class="string">'#'</span> || Map[<span class="number">1</span>][M] == <span class="string">'#'</span>|| Map[N][<span class="number">1</span>] == <span class="string">'#'</span>|| Map[N][M] == <span class="string">'#'</span>)
+        {
+            <span class="built_in">cout</span>&lt;&lt;<span class="string">"impossible"</span>&lt;&lt;<span class="built_in">endl</span>;
+            <span class="keyword">continue</span>;
+        }
+
+        DFS(<span class="number">2</span>,<span class="number">2</span>,<span class="number">0</span>,Cnt);
+        <span class="keyword">if</span>(ans == INT_MAX) <span class="built_in">cout</span> &lt;&lt; <span class="string">"impossible"</span> &lt;&lt; <span class="built_in">endl</span>;
+        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;
+
+        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;
+    }
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>

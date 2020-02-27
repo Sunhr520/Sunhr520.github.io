@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Balanced Strings - Development notes of SHR</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Sunhr520,"> 
+    <meta name="description" content="Being an individual obsessed with balancing and trying to find strings that meet that criteria, you,"> 
+    <meta name="author" content="Sunhr520"> 
+    <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Development notes of SHR</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Balanced Strings</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Balanced Strings</h1>
+        <div class="stuff">
+            <span>二月 16, 2000</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>Being an individual obsessed with balancing and trying to find strings that meet that criteria, you have begun a new endeavor to study the curious structure of what we will call balanced strings. </p>
+<p>Balanced strings are strings that maintain an equal ratio of consonants to vowels in all of their substrings.  What?  You don’t know the difference between a consonant and a vowel?  Vowels are the characters ‘a’, ‘e’, ‘i’, ‘o’, ‘u’ and sometimes ‘y’.  Actually, you don’t like the character ‘y’ because this makes the problem much harder.  What was the difficulty level of this problem again?  Oh yeah Medium!  We can’t have a problem about consonants and vowels that makes ‘y’ sometimes a vowel!  That would make the problem a Hard and too many hard problems is a very bad thing.  Being obsessed with balance, you have decided that ‘y’ will be included with the vowels.  That way, there are 6 vowels and 20 consonants.  A nice balanced even number of both! Oh! I almost forgot!  A consonant is any letter that is not a vowel.  Also to simplify things (this is a medium problem after all!), we will consider strings composed of lowercase letters only. </p>
+<p>Now you are ready to understand balanced strings!  A balanced string is a string that has an equal number of consonants and vowels in all of its substrings.  Well… not all of its substrings.  Just the substrings of even length!  For example, the string “orooji” has the following set of even- length substrings: {“or”, “ro”, “oo”, “oj”, “ji”, “oroo”, “rooj”, “ooji”, “orooji”}. In that set the following substrings are unbalanced: {“oo”, “oroo”, “ooji”, “orooji”}.  That is, the substrings do not contain an equal number of vowels and consonants.  So, the string “orooji” is not balanced.  But a string like “arup” is balanced.  The requisite even-length substrings are: {“ar”, “ru”, “up”, “arup”} and all these substrings are balanced (have the same number of vowels and consonants), thus the string “arup” is balanced.  Note that a balanced string may contain an odd number of characters, e.g., the string “ali” is balanced since all its even-length substrings ({“al”, “li”}) are balanced.  </p>
+<p>Now you want to take words and erase some of the letters and replace them with new letters to form balanced strings.  Since this is a medium problem, we’ve taken the liberty of erasing some of the letters for you and replaced them with ‘?’ characters.  See! The problem is already halfway solved!  </p>
+<p>The Problem:   </p>
+<p>Given a string of lowercase letters and ‘?’ characters, count the number of ways to replace all the ‘?’ with lowercase letters such that the string results in a balanced string.  Two ways are considered different if there exists some i such that the i^{th}i<br>th<br>  character in one string differs from the i^{th}i<br>th<br>  character of the other string.  Note that all the ‘?’ do not have to be replaced by the same letter.   </p>
+<p>The Input:   </p>
+<p>The first input line contains a positive integer, n, indicating the number of strings to balance.  The strings are on the following n input lines, one string per line.  Each string contains only lowercase letters and/or ‘?’ characters.  Assume each input string has at least one character and at most 100 characters.  </p>
+<p>The Output:  </p>
+<p>For each string, output “String #d: v” where v is the number of ways to replace the questions marks with lower case letters.  It is guaranteed that v will fit in a signed 64-bit integer for the strings we provide.  Leave a blank line after the output for each string.    </p>
+<blockquote>
+<p>样例输入<br>7<br>orooji<br>al?<br>a?i<br>g?ha<br>a?u?<br>?????????????????<br>arup </p>
+</blockquote>
+<blockquote>
+<p>样例输出<br>String #1: 0<br>String #2: 6<br>String #3: 20<br>String #4: 6<br>String #5: 400<br>String #6: 1117952409600000000<br>String #7: 1</p>
+</blockquote>
+<h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>输入一个字符串，替换其中的？使其达到元辅交错，输出方案数</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>由题目不难看出是道dp题，dp方面不算好，想了好久</p>
+<h4 id="AC码"><a href="#AC码" class="headerlink" title="AC码"></a>AC码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INT_MAX 2147483647</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INT_MIN (- INT_MAX - 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI acos(-1)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> in(x) (x) = read()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fre(x) for(int _=(x); _;_--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> frein() int in(Loop_var);while(Loop_var--)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>, mark = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> t = getchar();</span><br><span class="line">	<span class="keyword">while</span>(t &lt; <span class="string">'0'</span> || t &gt; <span class="string">'9'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (t == <span class="string">'-'</span>)</span><br><span class="line">			mark = <span class="number">-1</span>;</span><br><span class="line">		t = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(t &lt;= <span class="string">'9'</span> &amp;&amp; t &gt;= <span class="string">'0'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		ans = (ans &lt;&lt; <span class="number">3</span>) + (ans &lt;&lt; <span class="number">1</span>) + t - <span class="string">'0'</span>;</span><br><span class="line">		t = getchar();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ans * mark;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e2</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">ll dp[N][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> let[] = &#123;<span class="string">'a'</span>,<span class="string">'e'</span>,<span class="string">'i'</span>,<span class="string">'o'</span>,<span class="string">'u'</span>,<span class="string">'y'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> t : let)</span><br><span class="line">		<span class="keyword">if</span>(c == t) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="comment">//IO</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> T;<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> _ = <span class="number">1</span>; _ &lt;= T; _++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"String #"</span> &lt;&lt; _ &lt;&lt; <span class="string">": "</span>;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">string</span> s;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line"></span><br><span class="line">		dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> len = s.size();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'?'</span>)</span><br><span class="line">			&#123;</span><br><span class="line">                dp[i + <span class="number">1</span>][<span class="number">0</span>]=<span class="number">1l</span>l * <span class="number">6</span> * dp[i][<span class="number">1</span>];</span><br><span class="line">                dp[i + <span class="number">1</span>][<span class="number">1</span>]=<span class="number">1l</span>l * <span class="number">20</span> * dp[i][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">                dp[i + <span class="number">1</span>][<span class="number">0</span>]=dp[i + <span class="number">1</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span>(check(s[i])) dp[i + <span class="number">1</span>][<span class="number">0</span>]=dp[i][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> dp[i + <span class="number">1</span>][<span class="number">1</span>]=dp[i][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; dp[len][<span class="number">0</span>] + dp[len][<span class="number">1</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='646becd06d4f34466006'
+        data-cs='a536737a1b967fd8d2b8efb5b290fdd41f4a58b1'
+        data-r='Sunhr520.github.io'
+        data-o='Sunhr520'
+        data-a='Sunhr520'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
+<script src="/live2d-widget/autoload.js"></script>
