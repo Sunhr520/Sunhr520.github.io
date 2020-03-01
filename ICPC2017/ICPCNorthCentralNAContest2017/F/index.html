@@ -5,13 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ICPCNorthCentralNAContest2017/H - Development notes of SHR</title>
+    <title>AC - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Sunhr520,"> 
-    <meta name="description" content="```cpp#include &amp;lt;bits/stdc++.h&amp;gt;using namespace std;typedef long long ll;
-int main(){    int n;,"> 
+    <meta name="description" content="```cpp#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;typedef long long ll;const int maxn=2e5+10;l,"> 
     <meta name="author" content="Sunhr520"> 
     <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -41,7 +40,7 @@ int main(){    int n;,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">ICPCNorthCentralNAContest2017/H</h3>
+    <h3 class="subtitle">AC</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -59,45 +58,21 @@ int main(){    int n;,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">ICPCNorthCentralNAContest2017/H</h1>
+        <h1 class="title">AC</h1>
         <div class="stuff">
-            <span>三月 01, 2020</span>
+            <span>二月 16, 2000</span>
             
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
+
 
         </div>
         <div class="content markdown">
-            <p>```cpp<br>#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>typedef long long ll;</p>
-<p>int main()<br>{<br>    int n;<br>    cin &gt;&gt; n;<br>    ll ans = 0;<br>    for (int i = n - 1; i &gt;= 0; –i)<br>    {<br>        char ch;<br>        scanf(“ %c”, &amp;ch);<br>        ans += (1LL &lt;&lt; i) * (ch == ‘O’);<br>    }<br>    cout &lt;&lt; ans &lt;&lt; endl;</p>
-<pre><code>return 0;</code></pre><p>}</p>
+            <p>```cpp<br>#include&lt;bits/stdc++.h&gt;<br>using namespace std;<br>typedef long long ll;<br>const int maxn=2e5+10;<br>ll a[maxn];<br>struct node{<br>    ll t,h;<br>    bool operator &lt;(const node&amp;r)const{<br>         return h&lt;r.h;<br>    }<br>}p[maxn];<br>int main(){<br>    int n;<br>    scanf(“%d”,&amp;n);<br>    for(int i=1;i&lt;=n;i++)cin&gt;&gt;p[i].t&gt;&gt;p[i].h;<br>    sort(p+1,p+1+n);<br>    ll sum=0;<br>    priority_queue<ll> q;<br>    for(int i=1;i&lt;=n;i++){<br>        if(p[i].t+sum&lt;=p[i].h)q.push(p[i].t),sum+=p[i].t;<br>        else{<br>            if(!q.empty() &amp;&amp; q.top()&gt;p[i].t)<br>        sum-=q.top(),q.pop(),q.push(p[i].t),sum+=p[i].t;<br>        }<br>    }<br>    cout&lt;&lt;q.size()&lt;&lt;endl;<br>    return 0;<br>}</ll></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
-                <source type="audio/mpeg" src="">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
             </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title='0' data-url='https://link.hhtjim.com/163/466174320.mp3'></li>
-                        
-                    
-                        
-                            <li title='1' data-url='https://link.hhtjim.com/163/423776786.mp3'></li>
-                        
-                    
-                        
-                            <li title='2' data-url='https://link.hhtjim.com/163/1317574682.mp3'></li>
-                        
-                    
-                        
-                            <li title='3' data-url='https://link.hhtjim.com/163/524747522.mp3'></li>
-                        
-                    
-                        
-                            <li title='4' data-url='https://link.hhtjim.com/163/440767687.mp3'></li>
-                        
-                    
-                </ul>
             
         </div>
         

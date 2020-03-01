@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ICPCNorthCentralNAContest2017/C - Development notes of SHR</title>
+    <title>AC - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -40,7 +40,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">ICPCNorthCentralNAContest2017/C</h3>
+    <h3 class="subtitle">AC</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -58,42 +58,20 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">ICPCNorthCentralNAContest2017/C</h1>
+        <h1 class="title">AC</h1>
         <div class="stuff">
-            <span>三月 01, 2020</span>
+            <span>二月 16, 2000</span>
             
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
+
 
         </div>
         <div class="content markdown">
             <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.StreamTokenizer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws IOException </span>&#123;</span><br><span class="line">		StreamTokenizer in = <span class="keyword">new</span> StreamTokenizer(<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in)));</span><br><span class="line">		PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> OutputStreamWriter(System.out));</span><br><span class="line">		in.nextToken();</span><br><span class="line">		<span class="keyword">int</span> s = (<span class="keyword">int</span>) in.nval;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> a[][] = <span class="keyword">new</span> <span class="keyword">int</span>[s][<span class="number">4</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">				in.nextToken();</span><br><span class="line">				a[i][j] = (<span class="keyword">int</span>) in.nval;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		in.nextToken();</span><br><span class="line">		<span class="keyword">int</span> t = (<span class="keyword">int</span>) in.nval;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> b[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">				in.nextToken();</span><br><span class="line">				b[j] = (<span class="keyword">int</span>) in.nval;</span><br><span class="line">			&#125;</span><br><span class="line">			boolean f = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span>[] c : a) &#123;<span class="comment">//通过叉积判断两点是否在直线同侧</span></span><br><span class="line">				f = f ^ ((c[<span class="number">2</span>] - c[<span class="number">0</span>]) * (b[<span class="number">3</span>] - c[<span class="number">1</span>]) - (c[<span class="number">3</span>] - c[<span class="number">1</span>]) * (b[<span class="number">2</span>] - c[<span class="number">0</span>]) &lt; <span class="number">0</span>)</span><br><span class="line">						^ ((c[<span class="number">2</span>] - c[<span class="number">0</span>]) * (b[<span class="number">1</span>] - c[<span class="number">1</span>]) - (c[<span class="number">3</span>] - c[<span class="number">1</span>]) * (b[<span class="number">0</span>] - c[<span class="number">0</span>]) &lt; <span class="number">0</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (f == <span class="literal">true</span>) &#123;</span><br><span class="line">				out.println(<span class="string">"same"</span>);</span><br><span class="line">				out.flush();</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				out.println(<span class="string">"different"</span>);</span><br><span class="line">				out.flush();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
-                <source type="audio/mpeg" src="">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
             </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title='0' data-url='https://link.hhtjim.com/163/466174320.mp3'></li>
-                        
-                    
-                        
-                            <li title='1' data-url='https://link.hhtjim.com/163/423776786.mp3'></li>
-                        
-                    
-                        
-                            <li title='2' data-url='https://link.hhtjim.com/163/1317574682.mp3'></li>
-                        
-                    
-                        
-                            <li title='3' data-url='https://link.hhtjim.com/163/524747522.mp3'></li>
-                        
-                    
-                        
-                            <li title='4' data-url='https://link.hhtjim.com/163/440767687.mp3'></li>
-                        
-                    
-                </ul>
             
         </div>
         
