@@ -1,7 +1,46 @@
 <hr>
 <p>title: AC<br>date: 2000-2-16 15:16:17<br>categories:<br>    - ICPC2017<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
 <hr>
-<p>```cpp<br>#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>typedef long long ll;</p>
-<p>inline void Max(int &amp;a, int b)<br>{<br>    if (a &lt; b)<br>        a = b;<br>}<br>const int N = 5e3 + 100;<br>int a[N];<br>int f[N], g[N], c[N]; //��������-&gt;������� fǰ׺���ֵ ��ֵ����</p>
-<p>int main()<br>{<br>    int n, k, s; //��Ʒ ���� �ܺ�<br>    cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;<br>    for (int i = 0; i &lt; n; ++i)<br>        scanf(“%d”, &amp;a[i]);<br>    memset(f, -0x3f, sizeof(f)); f[0] = 0;<br>    for (int i = 0; i &lt; k; ++i) //ö����<br>    {<br>        memset(g, 0, sizeof(g));<br>        memset(c, 0, sizeof(c));<br>        vector<int> vec;<br>        for (int j = 0; j * k + i &lt; n; ++j) //����k�������鲢ͳ�ƴ���<br>            if (c[a[j * k + i]]++ == 0)<br>                vec.push_back(a[j * k + i]);<br>        for (int j = 0; j &lt;= s; ++j)<br>            g[j] = max((j ? g[j - 1] : 0), f[j]);<br>        for (int j = s; j &gt;= 0; –j) //��������<br>        {<br>            f[j] += c[0]; //���Ϊ0����Ʒ��Ҫ������֮ǰת��<br>            for (auto v : vec)<br>                if (v &amp;&amp; j &gt;= v)<br>                    Max(f[j], f[j - v] + c[v]);<br>            Max(f[j], g[j]); //������һ�������ڵ�����<br>        }<br>    }<br>    cout &lt;&lt; n - f[s] &lt;&lt; endl;</p>
-<pre><code>return 0;</code></pre><p>}</p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;
+
+<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> b)</span></span>
+<span class="function"></span>{
+    <span class="keyword">if</span> (a &lt; b)
+        a = b;
+}
+<span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5e3</span> + <span class="number">100</span>;
+<span class="keyword">int</span> a[N];
+<span class="keyword">int</span> f[N], g[N], c[N]; <span class="comment">//背包容量-&gt;最大收益 f前缀最大值 数值次数</span>
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">int</span> n, k, s; <span class="comment">//物品 组数 总和</span>
+    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k &gt;&gt; s;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)
+        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);
+    <span class="built_in">memset</span>(f, <span class="number">-0x3f</span>, <span class="keyword">sizeof</span>(f)); f[<span class="number">0</span>] = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) <span class="comment">//枚举组</span>
+    {
+        <span class="built_in">memset</span>(g, <span class="number">0</span>, <span class="keyword">sizeof</span>(g));
+        <span class="built_in">memset</span>(c, <span class="number">0</span>, <span class="keyword">sizeof</span>(c));
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j * k + i &lt; n; ++j) <span class="comment">//按照k余数分组并统计次数</span>
+            <span class="keyword">if</span> (c[a[j * k + i]]++ == <span class="number">0</span>)
+                vec.push_back(a[j * k + i]);
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= s; ++j)
+            g[j] = max((j ? g[j - <span class="number">1</span>] : <span class="number">0</span>), f[j]);
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = s; j &gt;= <span class="number">0</span>; --j) <span class="comment">//背包容量</span>
+        {
+            f[j] += c[<span class="number">0</span>]; <span class="comment">//体积为0的物品需要在其它之前转移</span>
+            <span class="keyword">for</span> (<span class="keyword">auto</span> v : vec)
+                <span class="keyword">if</span> (v &amp;&amp; j &gt;= v)
+                    Max(f[j], f[j - v] + c[v]);
+            Max(f[j], g[j]); <span class="comment">//调整到一个不存在的数字</span>
+        }
+    }
+    <span class="built_in">cout</span> &lt;&lt; n - f[s] &lt;&lt; <span class="built_in">endl</span>;
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
