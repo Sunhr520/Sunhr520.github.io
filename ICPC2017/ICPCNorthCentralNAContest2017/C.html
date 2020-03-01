@@ -1,0 +1,48 @@
+<pre><code class="cpp"><span class="keyword">import</span> java.io.BufferedReader;
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.io.InputStreamReader;
+<span class="keyword">import</span> java.io.OutputStreamWriter;
+<span class="keyword">import</span> java.io.PrintWriter;
+<span class="keyword">import</span> java.io.StreamTokenizer;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> {</span>
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws IOException </span>{
+        StreamTokenizer in = <span class="keyword">new</span> StreamTokenizer(<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in)));
+        PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> OutputStreamWriter(System.out));
+        in.nextToken();
+        <span class="keyword">int</span> s = (<span class="keyword">int</span>) in.nval;
+
+        <span class="keyword">int</span> a[][] = <span class="keyword">new</span> <span class="keyword">int</span>[s][<span class="number">4</span>];
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s; i++) {
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) {
+                in.nextToken();
+                a[i][j] = (<span class="keyword">int</span>) in.nval;
+            }
+        }
+        in.nextToken();
+        <span class="keyword">int</span> t = (<span class="keyword">int</span>) in.nval;
+
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++) {
+            <span class="keyword">int</span> b[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) {
+                in.nextToken();
+                b[j] = (<span class="keyword">int</span>) in.nval;
+            }
+            boolean f = <span class="literal">true</span>;
+            <span class="keyword">for</span> (<span class="keyword">int</span>[] c : a) {<span class="comment">//通过叉积判断两点是否在直线同侧</span>
+                f = f ^ ((c[<span class="number">2</span>] - c[<span class="number">0</span>]) * (b[<span class="number">3</span>] - c[<span class="number">1</span>]) - (c[<span class="number">3</span>] - c[<span class="number">1</span>]) * (b[<span class="number">2</span>] - c[<span class="number">0</span>]) &lt; <span class="number">0</span>)
+                        ^ ((c[<span class="number">2</span>] - c[<span class="number">0</span>]) * (b[<span class="number">1</span>] - c[<span class="number">1</span>]) - (c[<span class="number">3</span>] - c[<span class="number">1</span>]) * (b[<span class="number">0</span>] - c[<span class="number">0</span>]) &lt; <span class="number">0</span>);
+            }
+
+            <span class="keyword">if</span> (f == <span class="literal">true</span>) {
+                out.println(<span class="string">"same"</span>);
+                out.flush();
+            } <span class="keyword">else</span> {
+                out.println(<span class="string">"different"</span>);
+                out.flush();
+            }
+        }
+
+    }
+
+}</code></pre>

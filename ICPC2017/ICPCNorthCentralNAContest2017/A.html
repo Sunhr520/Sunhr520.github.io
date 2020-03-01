@@ -1,0 +1,144 @@
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;
+<span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">100</span>;
+<span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>{
+    <span class="keyword">return</span> y == <span class="number">0</span> ? x : gcd(y, x%y);
+}
+<span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>{
+    <span class="keyword">return</span> x*y / gcd(x, y);
+}
+<span class="class"><span class="keyword">struct</span> <span class="title">fac</span>{</span><span class="comment">//分数类</span>
+    <span class="keyword">int</span> a, b;
+    fac(){}
+    fac(<span class="keyword">int</span> _a, <span class="keyword">int</span> _b){
+        a = _a, b = _b;
+    }
+    <span class="function"><span class="keyword">void</span> <span class="title">reduce</span><span class="params">()</span></span>{
+        <span class="keyword">int</span> x = gcd(a, b);
+        a /= x, b /= x;
+    };
+    fac <span class="keyword">operator</span>=(<span class="keyword">int</span> x){
+        a = x, b = <span class="number">1</span>;
+        <span class="keyword">return</span> *<span class="keyword">this</span>;
+    };
+    fac <span class="keyword">operator</span>=(<span class="keyword">const</span> fac x){
+        a = x.a, b = x.b;
+        reduce();
+        <span class="keyword">return</span> *<span class="keyword">this</span>;
+    };
+    fac <span class="keyword">operator</span>+(<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> fac(b*x.a + a*x.b, b*x.b);
+    }
+    fac <span class="keyword">operator</span> - (<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> fac(a*x.b - b*x.a, b*x.b);
+    };
+    fac <span class="keyword">operator</span> * (<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> fac(a*x.a, b*x.b);
+    };
+    fac <span class="keyword">operator</span> / (<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> fac(a*x.b, b*x.a);
+    };
+    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> a*x.b &lt; b*x.a;
+    };
+    <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> fac x){
+        <span class="keyword">return</span> a*x.b == b*x.a;
+    };
+    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>{
+        <span class="keyword">if</span> (b == <span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);
+        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d/%d\n"</span>, a, b);
+    };
+};
+<span class="function"><span class="keyword">inline</span> fac <span class="title">Abs</span><span class="params">(fac x)</span></span>{
+    <span class="keyword">int</span> p = x.a &gt; <span class="number">0</span> ? x.a : -x.a, q = x.b &gt; <span class="number">0</span> ? x.b : -x.b;
+    <span class="keyword">return</span> fac(p, q);
+}
+
+fac ans[<span class="number">100</span>];<span class="comment">//解</span>
+fac M[<span class="number">100</span>][<span class="number">100</span>];<span class="comment">//求解矩阵  存方程的系数</span>
+<span class="keyword">int</span> Ans[<span class="number">100</span>];<span class="comment">//整数解</span>
+<span class="keyword">int</span> cnt, c1, c2, flag = <span class="number">1</span>, N, K;<span class="comment">//cnt元素个数 c1反应物 c2总数</span>
+<span class="function"><span class="keyword">bool</span> <span class="title">solve</span><span class="params">()</span></span>{
+    ans[c2] = <span class="number">1</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= c2; j++)
+        M[i][j].b = <span class="number">1</span>;
+
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)
+        M[i][c2].a = -M[i][c2].a;
+
+    N = c2 - <span class="number">1</span>, K = cnt;<span class="comment">//N列 K行</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= N; k++){
+        fac maxm = fac(<span class="number">-1</span>, <span class="number">1</span>);
+        <span class="keyword">int</span> maxi;
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt;= K; i++)
+        <span class="keyword">if</span> (maxm &lt; Abs(M[i][k]))
+            maxm = Abs(M[i][k]), maxi = i;
+        <span class="keyword">if</span> (maxm == fac(<span class="number">0</span>, <span class="number">1</span>))
+            <span class="keyword">return</span> <span class="literal">false</span>;
+        <span class="keyword">if</span> (maxi != k)
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N + <span class="number">1</span>; j++){
+            swap(M[k][j], M[maxi][j]);
+        }
+        fac tmp = M[k][k];
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N + <span class="number">1</span>; j++)
+            M[k][j] = M[k][j] / tmp;
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = k - <span class="number">1</span> ? <span class="number">1</span> : <span class="number">2</span>; i &lt;= K; i++){
+            <span class="keyword">if</span> (i == k)<span class="keyword">continue</span>;
+            fac tmp = M[i][k];
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N + <span class="number">1</span>; j++)
+                M[i][j] = M[i][j] - tmp*M[k][j];
+        }
+    }
+    <span class="keyword">return</span> <span class="literal">true</span>;
+}
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{
+    <span class="built_in">map</span> &lt; <span class="built_in">string</span>, <span class="keyword">int</span>&gt;mp;
+    <span class="built_in">string</span> ss;
+    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ss){
+        <span class="keyword">int</span> x;
+        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);
+        <span class="keyword">if</span> (ss == <span class="string">"0"</span>&amp;&amp;x == <span class="number">0</span>)
+            <span class="keyword">break</span>;
+        c2++;
+        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;num;<span class="comment">//重复次数</span>
+        <span class="keyword">if</span> (ss == <span class="string">"+1"</span>){<span class="comment">//左边</span>
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= x; i++){
+                <span class="built_in">string</span> s; <span class="keyword">int</span> p;
+                <span class="built_in">cin</span> &gt;&gt; s &gt;&gt; p;
+                <span class="keyword">if</span> (mp[s] == <span class="number">0</span>){<span class="comment">//新出现的元素</span>
+                    cnt++;<span class="comment">//行++</span>
+                    mp[s] = cnt;
+                }
+                num[mp[s]] += p;
+                M[mp[s]][c2] = num[mp[s]];
+            }
+        }
+        <span class="keyword">else</span>{
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= x; i++){
+                <span class="built_in">string</span> s; <span class="keyword">int</span> p;
+                <span class="built_in">cin</span> &gt;&gt; s &gt;&gt; p;
+                <span class="keyword">if</span> (mp[s] == <span class="number">0</span>){<span class="comment">//新出现的元素</span>
+                    cnt++;<span class="comment">//行++</span>
+                    mp[s] = cnt;
+                }
+                num[mp[s]] -= p;
+                M[mp[s]][c2] = num[mp[s]];
+            }
+        }
+    }
+    <span class="keyword">if</span> (solve())
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= c2 - <span class="number">1</span>; i++)
+        ans[i] = M[i][N + <span class="number">1</span>];
+    <span class="comment">//否则无解</span>
+    <span class="keyword">int</span> tmp = lcm(ans[<span class="number">1</span>].b, ans[<span class="number">2</span>].b);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= c2; i++)
+        tmp = lcm(tmp, ans[i].b);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= c2; i++)
+        Ans[i] = ans[i].a*tmp / ans[i].b;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= c2; i++)
+        <span class="built_in">cout</span> &lt;&lt; Ans[i] &lt;&lt; <span class="string">" "</span>;
+    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
