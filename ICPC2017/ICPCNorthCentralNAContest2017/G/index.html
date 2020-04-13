@@ -70,7 +70,7 @@
             <p>```cpp<br>#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>const int MAXN = 110;<br>string mp[MAXN];<br>int dir[8][2] = { 1, 0, 1, 1, 0, 1, -1, 1, -1, 0, -1, -1, 0, -1, 1, -1 };<br>bool vis[MAXN][MAXN];<br>int n, m, ans;<br>bool check(int x, int y) { // 在地图内没有走过且为”#”<br>    if (x &gt;= 0 &amp;&amp; y &gt;= 0 &amp;&amp; x &lt; n &amp;&amp; y &lt; m &amp;&amp; mp[x][y] == ‘#’ &amp;&amp; !vis[x][y])<br>        return true;<br>    return false;<br>}<br>void dfs(int x, int y) {<br>    vis[x][y] = true;<br>    for (int i = 0; i &lt; 8; i++) {<br>        int xx = x + dir[i][0];<br>        int yy = y + dir[i][1];<br>        if (check(xx, yy))  // 判断可行条件<br>            dfs(xx, yy);<br>    }<br>}<br>int main()<br>{<br>    cin &gt;&gt; n &gt;&gt; m;<br>    for (int i = 0; i &lt; n; i++)<br>        cin &gt;&gt; mp[i];<br>    for (int i = 0; i &lt; n; i++) {<br>        for (int j = 0; j &lt; m; j++) {  // 新的连通块<br>            if (mp[i][j] == ‘#’ &amp;&amp; !vis[i][j])<br>                dfs(i, j), ans++;<br>        }<br>    }<br>    cout &lt;&lt; ans &lt;&lt; endl;<br>    return 0;<br>}</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
             </audio>
             
