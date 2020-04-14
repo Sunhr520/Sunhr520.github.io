@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>codeforces 1335 - Development notes of SHR</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Sunhr520,"> 
+    <meta name="description" content="原题链接目录:(&amp;gt;_&amp;lt;)
+A Candies and Two Sisters题目大意给你一个数，然后有多少整数 a, b 可以 a + b = n &amp;amp;&amp;amp; a &amp;gt; b,"> 
+    <meta name="author" content="Sunhr520"> 
+    <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Development notes of SHR</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">codeforces 1335</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">codeforces 1335</h1>
+        <div class="stuff">
+            <span>四月 13, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p><a href="https://codeforces.com/contest/1335/problems" target="_blank" rel="noopener">原题链接</a><br>目录:<a href="#a">(</a><a href="#b">&gt;</a><a href="#c">_</a><a href="#d">&lt;</a><a href="#e">)</a><br><a name="a"></a></p>
+<h2 id="A-Candies-and-Two-Sisters"><a href="#A-Candies-and-Two-Sisters" class="headerlink" title="A Candies and Two Sisters"></a>A Candies and Two Sisters</h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个数，然后有多少整数 a, b 可以 a + b = n &amp;&amp; a &gt; b</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>略</p>
+<h3 id="标程"><a href="#标程" class="headerlink" title="标程"></a>标程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frein()&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">in</span><span class="params">(n)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (n-n/<span class="number">2</span>)<span class="number">-1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="b"></a></p>
+<h2 id="B-Construct-the-String"><a href="#B-Construct-the-String" class="headerlink" title="B Construct the String"></a>B Construct the String</h2><h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你三个数 n, a, b你需要输出一个长度为 n 的字符串并且这个字符串需要满足:<br>    任何一个长度为a的连续子序列中有且仅有b种字母</p>
+<h3 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h3><p>先搞出一组来，然后循环往右补</p>
+<h3 id="标程-1"><a href="#标程-1" class="headerlink" title="标程"></a>标程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">frein()&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">innn</span><span class="params">(n, a, b)</span></span>;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">char</span> i = <span class="string">'a'</span>; i &lt; <span class="string">'a'</span>+b; i++)</span><br><span class="line">		s += i;</span><br><span class="line">	<span class="keyword">char</span> c = s[s.size()<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = b; i &lt; a; i++)</span><br><span class="line">		s += c;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = a; i &lt; n; i++)&#123;</span><br><span class="line">		s += s[i - a];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="c"></a></p>
+<h2 id="C-Two-Teams-Composing"><a href="#C-Two-Teams-Composing" class="headerlink" title="C Two Teams Composing##"></a>C Two Teams Composing##</h2><h3 id="题目大意-2"><a href="#题目大意-2" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一组数, 你需要从这一组数中找出两组数目为x的数。这两组数要求:第一组各不相同的x的数，第二组数目相同的x个数</p>
+<h3 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h3><p>找出数字一共多少种 king 和 每一种最大的数目 Max 之后判断一下输出</p>
+<h3 id="标程-2"><a href="#标程-2" class="headerlink" title="标程"></a>标程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> book[N];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">frein()&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">in</span><span class="params">(n)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n + <span class="number">1</span>; i++) book[i]=<span class="number">0</span>;</span><br><span class="line">	fre(n)&#123;</span><br><span class="line">		book[read()]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> king = <span class="number">0</span>, Max = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n+<span class="number">1</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(book[i]) &#123;</span><br><span class="line">			king++;</span><br><span class="line">			Max = max(Max, book[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans = Max &lt; king ? Max : min(Max - <span class="number">1</span>, king);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="d"></a></p>
+<h2 id="D-Anti-Sudoku"><a href="#D-Anti-Sudoku" class="headerlink" title="D Anti-Sudoku"></a>D Anti-Sudoku</h2><h3 id="题目大意-3"><a href="#题目大意-3" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一个正确的数独,你需要通过改数来达到下面的要求并输出</p>
+<ul>
+<li>任何一行有且仅有两个数相同</li>
+<li>任何一列有且仅有两个数相同</li>
+<li>3*3的区块中有且仅有两个数相同</li>
+</ul>
+<h3 id="题目分析-3"><a href="#题目分析-3" class="headerlink" title="题目分析"></a>题目分析</h3><p>将1~9的一个数换成1~9的另一个数即可</p>
+<h3 id="标程-3"><a href="#标程-3" class="headerlink" title="标程"></a>标程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">frein()<span class="built_in">free</span>(<span class="number">9</span>,<span class="number">10</span>)&#123;</span><br><span class="line">	<span class="keyword">char</span> t = getchar();</span><br><span class="line">	<span class="keyword">if</span>(t == <span class="string">'9'</span>) <span class="built_in">putchar</span>(<span class="string">'1'</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">putchar</span>(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="e"></a></p>
+<h2 id="E-Three-Blocks-Palindrome"><a href="#E-Three-Blocks-Palindrome" class="headerlink" title="E Three Blocks Palindrome"></a>E Three Blocks Palindrome</h2><h3 id="题目大意-4"><a href="#题目大意-4" class="headerlink" title="题目大意"></a>题目大意</h3><p>给你一组数，你需要输出满足要求的回文子序列的最大长度<br>子序列要求:<br>[a,a,…,a,b,b,…b,a,a,…a] 其中 左,右 有x个a，中间是y个b<br>其中 x, y均可为 0、 a, b可以为相同数字</p>
+<h3 id="题目分析-4"><a href="#题目分析-4" class="headerlink" title="题目分析"></a>题目分析</h3><p>可以先找出左和右, 之后再找中间的部分<br>寻找左右:<br>    可以选择用一个数组book[N]存下每个数出现的位置<br>    那么从两端向中间选数即可<br>寻找中间:<br>    这就是找一个区间中出现次数最多的数，可以暴力，也可以用线段树等优化，个人倾向于暴力</p>
+<p>特殊情况:<br>    左和右不存在(为0)的时候</p>
+<h3 id="标程-4"><a href="#标程-4" class="headerlink" title="标程"></a>标程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> book[N][<span class="number">205</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v[<span class="number">205</span>];</span><br><span class="line"></span><br><span class="line">frein()&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">in</span><span class="params">(n)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">205</span>; i++)</span><br><span class="line">		v[i].clear();</span><br><span class="line">	<span class="comment">//init</span></span><br><span class="line"></span><br><span class="line">	fre(n)&#123;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">in</span><span class="params">(t)</span></span>;</span><br><span class="line">		v[t].push_back(_);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">205</span>; i++)</span><br><span class="line">			book[_][i]=book[_<span class="number">-1</span>][i];</span><br><span class="line">		book[_][t]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//输入数据</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> Max = -INF;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">205</span>; i++)</span><br><span class="line">		Max = max(Max, (<span class="keyword">int</span>)v[i].size());</span><br><span class="line">	<span class="comment">//先找一下特殊情况</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> _= <span class="number">0</span>; _&lt;<span class="number">205</span>; _++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">int</span> cnt = v[_].size();</span><br><span class="line">		<span class="keyword">if</span>(!cnt || cnt == <span class="number">1</span>) <span class="keyword">continue</span>; </span><br><span class="line">		<span class="comment">//当出现0或者1次的时候 不可能位于左右两端 舍弃</span></span><br><span class="line">		<span class="keyword">int</span> i = cnt/<span class="number">2</span> - <span class="number">1</span>, j = cnt - cnt/<span class="number">2</span>;</span><br><span class="line">		<span class="comment">//我这里是从中间往边去，那么i, j应该选取中位数</span></span><br><span class="line">		<span class="comment">//奇数的时候 i = cnt/2 - 1，j = cnt/2 + 1</span></span><br><span class="line">		<span class="comment">//偶数的时候 i = cnt/2 - 1, j = cnt/2</span></span><br><span class="line">		<span class="comment">//综合这两种情况可推出 i = cnt/2 - 1, j = cnt - cnt / 2</span></span><br><span class="line">		<span class="comment">//此时 无需分奇偶</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span>(i &gt;= <span class="number">0</span>&amp;&amp;j &lt;= cnt)&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> ans = <span class="number">2</span>*(i+<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">int</span> Tmax = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; <span class="number">205</span>; l++)</span><br><span class="line">				<span class="keyword">if</span>(l!=_) Tmax = max(Tmax, book[v[_][j]][l]-book[v[_][i]<span class="number">-1</span>][l]);</span><br><span class="line">			<span class="comment">//遍历区间内的每个数，找出出现次数最大的</span></span><br><span class="line">				</span><br><span class="line">			Max = max(Max, ans+Tmax);</span><br><span class="line"></span><br><span class="line">			i--,j++;</span><br><span class="line">			<span class="comment">//i向左，j向右</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; Max &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://link.hhtjim.com/163/466174320.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='https://link.hhtjim.com/163/423776786.mp3'></li>
+                        
+                    
+                        
+                            <li title='2' data-url='https://link.hhtjim.com/163/1317574682.mp3'></li>
+                        
+                    
+                        
+                            <li title='3' data-url='https://link.hhtjim.com/163/524747522.mp3'></li>
+                        
+                    
+                        
+                            <li title='4' data-url='https://link.hhtjim.com/163/440767687.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='646becd06d4f34466006'
+        data-cs='a536737a1b967fd8d2b8efb5b290fdd41f4a58b1'
+        data-r='Sunhr520.github.io'
+        data-o='Sunhr520'
+        data-a='Sunhr520'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'Sunhr-chat/community'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+</html>
+<script src="/live2d-widget/autoload.js"></script>
