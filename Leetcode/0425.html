@@ -1,0 +1,16 @@
+<hr>
+<p>title: 0425<br>date: 2020-04-25 09:06:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/permutations/" target="_blank" rel="noopener">Leetcode 46 全排列</a></p>
+<p><strong>方法一：直接调用库函数 next_permutation()</strong></p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; <span class="title">permute</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        sort(nums.begin(), nums.end());
+        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; ans;
+        <span class="keyword">do</span>{
+            ans.push_back(nums);
+        }<span class="keyword">while</span>(next_permutation(nums.begin(), nums.end()));
+        <span class="keyword">return</span> ans;
+    }
+};</code></pre>
