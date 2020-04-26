@@ -1,8 +1,0 @@
-<hr>
-<p>title: AC<br>date: 2000-2-16 15:16:17<br>categories:<br>    - ICPC2017<br>tags:<br>    - conceal<br>mp3: <a href="http://domain.com/awesome.mp3" target="_blank" rel="noopener">http://domain.com/awesome.mp3</a></p>
-<hr>
-<p>```cpp<br>#include &lt;bits/stdc++.h&gt;<br>using namespace std;</p>
-<p>const int MAXN = 1e7 + 100;<br>const int MAXM = 4e3 + 100;</p>
-<p>struct Edge<br>{<br>    int u, v, w;<br>    bool operator &lt; (const Edge &amp;oth) const {<br>        return w &lt; oth.w;<br>    }<br>}p[MAXN];<br>int fa[MAXM], n, M, X;</p>
-<p>int find_(int x) {<br>    if (x != fa[x])<br>        x = fa[x] = find_(fa[x]);<br>    return x;<br>}<br>void unite(int x, int y) {<br>    x = find_(x);<br>    y = find_(y);<br>    if (x != y)<br>        fa[x] = y;<br>}</p>
-<p>int main()<br>{<br>    cin &gt;&gt; n;<br>    for (int i = 1; i &lt;= n; i++)  //初始化每个父亲都是自己<br>        fa[i] = i;<br>    for (int i = 1; i &lt;= n; i++) {<br>        for (int j = 1; j &lt;= n; j++) {<br>            int wi;<br>            scanf(“%d”, &amp;wi);<br>            if (j &lt; i)<br>                continue;  // 只存一次即可<br>            p[X++] = { i, j, wi };<br>        }<br>    }<br>    sort(p, p + X); // 按照边权从小到大排序<br>    for (int i = 0; i &lt; X; i++) {<br>        if (M == n - 1)          // 树生成好直接退出<br>            break;<br>        int ui = find_(p[i].u), vi = find_(p[i].v);<br>        if (ui != vi) {  // 加入集合<br>            M++;<br>            unite(ui, vi);<br>            printf(“%d %d\n”, p[i].u, p[i].v);<br>        }<br>    }<br>    return 0;<br>}</p>
