@@ -5,13 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Leetcode - Development notes of SHR</title>
+    <title>Leetcode-33-搜索旋转排序数组 - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Sunhr520,"> 
-    <meta name="description" content="Leetcode每日一题04-25:全排列04-26:合并K个排序链表04-27:搜索旋转排序数组
-"> 
+    <meta name="description" content="Leetcode 33 搜索旋转排序数组
+解法 二分查找
+12345678910111213141516171819202122232425262728class Solution &amp;#123;pu,"> 
     <meta name="author" content="Sunhr520"> 
     <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -41,7 +42,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Leetcode</h3>
+    <h3 class="subtitle">Leetcode-33-搜索旋转排序数组</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -59,17 +60,18 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">Leetcode</h1>
+        <h1 class="title">Leetcode-33-搜索旋转排序数组</h1>
         <div class="stuff">
-            <span>四月 25, 2020</span>
+            <span>四月 26, 2020</span>
             
   <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h2 id="Leetcode每日一题"><a href="#Leetcode每日一题" class="headerlink" title="Leetcode每日一题"></a>Leetcode每日一题</h2><p><a href="0425/">04-25:全排列</a><br><a href="0426/">04-26:合并K个排序链表</a><br><a href="0427/">04-27:搜索旋转排序数组</a></p>
-
+            <p><a href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">Leetcode 33 搜索旋转排序数组</a></p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p> 二分查找</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.empty()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[<span class="number">0</span>] == target) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[<span class="number">1</span>] == target) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(check(l, r, nums, target)) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> nums[l] == target ? l : <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[l] &lt;= nums[mid] &amp;&amp; target &lt;= nums[mid] &amp;&amp; nums[l] &lt;= target)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[l] &gt; nums[mid] &amp;&amp; (target &gt;= nums[l] || target &lt;= nums[mid]))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
