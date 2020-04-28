@@ -1,0 +1,40 @@
+<hr>
+<p>title: Leetcode-面试题56-I-数组中数字出现的次数<br>date: 2020-04-28 09:17:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/" target="_blank" rel="noopener">面试题56-I-数组中数字出现的次数</a></p>
+<h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>这个是比较朴素的做法。。但是好像都没有这么做。。而且时间上和空间上都不是很好建议直接看解法二</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">singleNumbers</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="comment">//if(nums.size() == 2) return nums;</span>
+
+        <span class="built_in">bitset</span>&lt;10005&gt; book;<span class="comment">// book.reset();</span>
+        <span class="keyword">for</span>(<span class="keyword">auto</span> s : nums) 
+            book.flip(s);
+
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;
+        <span class="keyword">for</span>(<span class="keyword">auto</span> s : nums)
+            <span class="keyword">if</span>(book[s]) ans.push_back(s);
+
+        <span class="keyword">return</span> ans;
+    }
+};</code></pre>
+<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>来自万能的评论区,具体原理也可以去万能的评论区找,时间上和空间上都比较好</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">singleNumbers</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="keyword">int</span> tmp=<span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)
+            tmp^=num;
+        <span class="keyword">int</span> tmp1=tmp&amp;(-tmp);
+        <span class="keyword">int</span> res1=<span class="number">0</span>,res2=<span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i:nums)
+        {
+            <span class="keyword">if</span>(i&amp;tmp1)
+                res1^=i;
+            <span class="keyword">else</span>
+                res2^=i;
+        }
+        <span class="keyword">return</span> {res1,res2};
+    }
+};</code></pre>
