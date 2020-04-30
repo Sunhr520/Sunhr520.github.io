@@ -1,0 +1,41 @@
+<hr>
+<p>title: Leetcode-21-合并两个有序链表<br>date: 2020-04-29 09:17:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">21-合并两个有序链表</a></p>
+<pre><code class="cpp"><span class="comment">/**</span>
+<span class="comment"> * Definition for singly-linked list.</span>
+<span class="comment"> * struct ListNode {</span>
+<span class="comment"> *     int val;</span>
+<span class="comment"> *     ListNode *next;</span>
+<span class="comment"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+<span class="comment"> * };</span>
+<span class="comment"> */</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+     <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* a, ListNode* b)</span></span>{
+        <span class="keyword">if</span>(a == <span class="literal">NULL</span>) <span class="keyword">return</span> b;
+        <span class="keyword">if</span>(b == <span class="literal">NULL</span>) <span class="keyword">return</span> a;
+
+        ListNode* head;ListNode* p;
+        <span class="keyword">if</span>(a-&gt;val &lt; b-&gt;val) {p = a;a = a-&gt;next;}
+        <span class="keyword">else</span> {p = b;b = b-&gt;next;}
+        p-&gt;next = <span class="literal">NULL</span>;
+        head = p;
+
+        <span class="keyword">while</span>(a!=<span class="literal">NULL</span>&amp;&amp;b!=<span class="literal">NULL</span>){
+            <span class="keyword">if</span>(a-&gt;val &lt; b-&gt;val){
+                p-&gt;next = a;
+                a = a-&gt;next;
+            }<span class="keyword">else</span>{
+                p-&gt;next = b;
+                b = b-&gt;next;
+            }
+            p = p-&gt;next;
+        }
+
+        <span class="keyword">if</span>(a!=<span class="literal">NULL</span>) p-&gt;next = a;
+        <span class="keyword">else</span> p-&gt; next = b;
+
+        <span class="keyword">return</span> head;
+    }
+};</code></pre>

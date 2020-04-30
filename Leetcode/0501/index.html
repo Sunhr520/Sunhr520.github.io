@@ -5,12 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Leetcode - Development notes of SHR</title>
+    <title>Leetcode-21-合并两个有序链表 - Development notes of SHR</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Sunhr,"> 
-    <meta name="description" content="Leetcode每日一题04-25:全排列04-26:合并K个排序链表04-27:搜索旋转排序数组04-28:数组中数字出现的次数04-29:山脉数组中查找目标值04-30:快乐数05-01:合并两,"> 
+    <meta name="description" content="21-合并两个有序链表
+12345678910111213141516171819202122232425262728293031323334353637/** * Definition for s,"> 
     <meta name="author" content="Sunhr520"> 
     <link rel="alternative" href="atom.xml" title="Development notes of SHR" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -40,7 +41,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://Sunhr520.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Leetcode</h3>
+    <h3 class="subtitle">Leetcode-21-合并两个有序链表</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -58,17 +59,17 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">Leetcode</h1>
+        <h1 class="title">Leetcode-21-合并两个有序链表</h1>
         <div class="stuff">
-            <span>四月 25, 2020</span>
+            <span>四月 29, 2020</span>
             
   <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/conceal/" rel="tag">conceal</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h2 id="Leetcode每日一题"><a href="#Leetcode每日一题" class="headerlink" title="Leetcode每日一题"></a>Leetcode每日一题</h2><p><a href="0425/">04-25:全排列</a><br><a href="0426/">04-26:合并K个排序链表</a><br><a href="0427/">04-27:搜索旋转排序数组</a><br><a href="0428/">04-28:数组中数字出现的次数</a><br><a href="0429/">04-29:山脉数组中查找目标值</a><br><a href="0430/">04-30:快乐数</a><br><a href="0501/">05-01:合并两个有序链表</a></p>
-
+            <p><a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">21-合并两个有序链表</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* a, ListNode* b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a == <span class="literal">NULL</span>) <span class="keyword">return</span> b;</span><br><span class="line">        <span class="keyword">if</span>(b == <span class="literal">NULL</span>) <span class="keyword">return</span> a;</span><br><span class="line"> </span><br><span class="line">        ListNode* head;ListNode* p;</span><br><span class="line">        <span class="keyword">if</span>(a-&gt;val &lt; b-&gt;val) &#123;p = a;a = a-&gt;next;&#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;p = b;b = b-&gt;next;&#125;</span><br><span class="line">        p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        head = p;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">while</span>(a!=<span class="literal">NULL</span>&amp;&amp;b!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a-&gt;val &lt; b-&gt;val)&#123;</span><br><span class="line">                p-&gt;next = a;</span><br><span class="line">                a = a-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                p-&gt;next = b;</span><br><span class="line">                b = b-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(a!=<span class="literal">NULL</span>) p-&gt;next = a;</span><br><span class="line">        <span class="keyword">else</span> p-&gt; next = b;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
