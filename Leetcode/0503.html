@@ -1,0 +1,39 @@
+<hr>
+<p>title: Leetcode-53-最大子序列和<br>date: 2020-04-29 09:17:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">53-最大子序列和</a></p>
+<h3 id="解法零"><a href="#解法零" class="headerlink" title="解法零"></a>解法零</h3><p> 暴力</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="keyword">const</span> <span class="keyword">int</span> INF = (<span class="keyword">unsigned</span>)<span class="number">-1</span>&gt;&gt;<span class="number">1</span>;
+        int NS(nums.size()), sum(0),ans(-INF-1);
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>; j &lt; NS; j++){
+            sum += nums[j];
+            ans = max(sum, ans);
+            <span class="keyword">while</span>(i&lt;=j&amp;&amp;sum&lt;=<span class="number">0</span>) sum-=nums[i++];
+        }
+        <span class="keyword">return</span> ans;
+    }
+};</code></pre>
+<h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p> 使用DP作答， dp[i]=k，第i位数字的前的最大连续子序列和，dp[i] = max(dp[i-1]+num[i], num[i])</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, dp=nums[<span class="number">0</span>], ans = dp; i &lt;= nums.size(); i++)
+            <span class="keyword">if</span>(i!=nums.size()) dp = max(dp+nums[i], nums[i]), ans = max(ans, dp);
+            <span class="keyword">else</span> <span class="keyword">return</span> ans;
+        <span class="keyword">return</span> <span class="number">-1</span>;
+    }
+};</code></pre>
+<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p> 使用贪心，具体看码</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, sum = nums[<span class="number">0</span>]&gt;<span class="number">0</span>?nums[<span class="number">0</span>]:<span class="number">0</span>, ans = nums[<span class="number">0</span>]; i &lt;= nums.size(); i++)
+            <span class="keyword">if</span>(i != nums.size()) sum = sum + nums[i], ans = max(ans, sum), sum&lt;<span class="number">0</span>&amp;&amp;(sum=<span class="number">0</span>);
+            <span class="keyword">else</span> <span class="keyword">return</span> ans;
+        <span class="keyword">return</span> <span class="number">-1</span>;
+    }
+};</code></pre>
+<h3 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h3><p> 线段树</p>
