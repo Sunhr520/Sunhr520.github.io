@@ -1,0 +1,34 @@
+<hr>
+<p>title: Leetcode-98-验证二叉搜索树<br>date: 2020-05-05 09:17:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/" target="_blank" rel="noopener">45-跳跃游戏II</a></p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法　###"></a>解法　###</h3><p>中序遍历</p>
+<pre><code class="cpp"><span class="comment">/**</span>
+<span class="comment"> * Definition for a binary tree node.</span>
+<span class="comment"> * struct TreeNode {</span>
+<span class="comment"> *     int val;</span>
+<span class="comment"> *     TreeNode *left;</span>
+<span class="comment"> *     TreeNode *right;</span>
+<span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="comment"> * };</span>
+<span class="comment"> */</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>{
+        <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> INF = (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>) <span class="number">-1</span> &gt;&gt; <span class="number">1</span>;
+        TreeNode* stk[<span class="number">100005</span>]; <span class="keyword">int</span> tt =  <span class="number">0</span>;
+        <span class="keyword">long</span> <span class="keyword">long</span> LeftVal = -INF<span class="number">-1</span>;
+
+        <span class="keyword">while</span>(tt &gt; <span class="number">0</span>|| root != <span class="literal">NULL</span>){
+            <span class="keyword">while</span>(root != <span class="literal">NULL</span>){
+                stk[++tt] = root;
+                root = root-&gt;left;
+            }
+            root = stk[tt--];
+            <span class="keyword">if</span>(root-&gt;val &lt;= LeftVal) <span class="keyword">return</span> <span class="literal">false</span>;
+            LeftVal = root -&gt; val;
+            root = root -&gt; right;
+        }
+        <span class="keyword">return</span> <span class="literal">true</span>;
+    }
+};</code></pre>
