@@ -1,0 +1,21 @@
+<hr>
+<p>title: Leetcode-45-跳跃游戏II<br>date: 2020-05-04 09:17:15<br>tags: conceal</p>
+<hr>
+<p><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank" rel="noopener">45-跳跃游戏II</a></p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>使用贪心，每次选择最远的</p>
+<pre><code class="cpp"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{
+        int cnt(0), NS(nums.size()), i(0);
+        <span class="keyword">if</span>(NS == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;
+        <span class="keyword">if</span>(NS == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;
+        <span class="keyword">while</span>(i+<span class="number">1</span> &lt; NS){
+            int j(i+nums[i]), k(j);
+            <span class="keyword">for</span>(<span class="keyword">int</span> l = i; l &lt;= k&amp;&amp;l&lt;NS; l++)
+                <span class="keyword">if</span>(j&lt;l+nums[l]) i=l,j=l+nums[l];
+            <span class="keyword">if</span>(i&lt;NS) cnt++;
+            <span class="keyword">if</span>(k+<span class="number">1</span>&gt;=NS) <span class="keyword">break</span>;
+        }
+        <span class="keyword">return</span> cnt;
+    }
+};</code></pre>
