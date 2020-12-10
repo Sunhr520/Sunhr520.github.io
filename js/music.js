@@ -68,11 +68,15 @@ function MusicBack(){
     if(index == 0) index = MusicLists.length - 1;
     else index -= 1;
     oaudio.src=MusicLists[index];
+    oaudio.play();
+    Mflag = false;
 }
 function MusicForward(){
     if(index + 1 == MusicLists.length) index = 0;
     else index += 1;
     oaudio.src = MusicLists[index];
+    oaudio.play();
+    Mflag = false;
 }
 
 export function StartMusic(){
