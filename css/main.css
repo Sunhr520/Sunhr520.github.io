@@ -1,0 +1,90 @@
+*{margin:0;padding:0;list-style-type:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+body, html{
+    width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+
+body{
+    background: url("../img/background.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.move{position: fixed;}
+
+#music{
+    z-index:999;
+
+    width: 50px; height: 50px; 
+    background: url("../img/music.png") no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
+#music *{
+    width: 50px;height: 50px;
+    display: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+#music #play{
+    background-image: url(../img/play.png);
+}
+#music #forward{
+    background-image: url(../img/forward.png);
+}
+#music #pause{
+    background-image: url(../img/pause.png);
+}
+#music #back{
+    background-image: url(../img/back.png);
+}
+
+#clock {
+	position:absolute;
+	top:0;
+	left:0;
+	text-align:center;
+	color:#fff;
+	font-family:"等线 Light","Microsoft Yahei Light";
+	font-size:200px;
+	text-shadow: 0 0 20px rgb(255, 0, 170);
+	z-index:100;
+}
+#clock .sec {
+	font-size:0.5em;
+}
+#time {
+	position:relative;
+}
+#clock .st {
+	position:absolute;
+	right:2%;
+	top:15%;
+	font-size:0.25em;
+	line-height:1;
+}
+#oDate {
+	position:absolute;
+	top:0;
+	left:0;
+	text-align:center;
+	color:#fff;
+	font-family:"等线 Light","Microsoft Yahei Light";
+	font-size:200px;
+	text-shadow: 0 0 20px rgb(255, 0, 170);
+	z-index:90;
+}
+#oDate .sec {
+	font-size:0.5em;
+}
+#oDate .st {
+	position:absolute;
+	right:2%;
+	top:15%;
+	font-size:0.25em;
+	line-height:1;
+}

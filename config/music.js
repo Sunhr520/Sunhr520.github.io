@@ -1,0 +1,1 @@
+export function MusicList() {return ['./music/music (1).mp3','./music/music (2).mp3','./music/music (3).mp3','./music/music (4).mp3','./music/music (5).mp3']}
