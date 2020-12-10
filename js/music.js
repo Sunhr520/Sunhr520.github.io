@@ -80,7 +80,7 @@ export function StartMusic(){
     move("music");
     musicInit();
 
-    dbClick(omusic, Show); Burl(omusic, NoShow);
+    Click(omusic, Show); Burl(omusic, NoShow);
     Click(oplay, MusicPlay); Click(opause, MusicPause);
     Click(oback, MusicBack); Click(oforward, MusicForward);
 }
